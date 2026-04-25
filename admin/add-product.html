@@ -2,9 +2,555 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Add Product - PhoneHub Admin</title>
-  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    /* ================================
+       PhoneHub Admin - Fully Responsive
+       No external CSS needed
+       ================================ */
+    :root {
+      --primary: #1a56db;
+      --primary-dark: #1e429f;
+      --primary-light: #e1effe;
+      --secondary: #7c3aed;
+      --success: #059669;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --dark: #111827;
+      --gray-900: #1f2937;
+      --gray-800: #374151;
+      --gray-700: #4b5563;
+      --gray-600: #6b7280;
+      --gray-500: #9ca3af;
+      --gray-400: #d1d5db;
+      --gray-300: #e5e7eb;
+      --gray-200: #f3f4f6;
+      --gray-100: #f9fafb;
+      --white: #ffffff;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--gray-100);
+      color: var(--gray-900);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Admin Wrapper */
+    .admin-wrapper {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .sidebar-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .sidebar-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-600);
+      border-radius: var(--radius);
+    }
+
+    .sidebar-toggle:hover {
+      background: var(--gray-100);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 1rem 0;
+      list-style: none;
+    }
+
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-nav li a svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .sidebar-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .back-to-site {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+
+    .back-to-site:hover {
+      color: var(--primary);
+    }
+
+    /* Mobile Overlay */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 260px;
+      transition: margin-left 0.3s ease;
+      min-width: 0;
+    }
+
+    /* Top Header */
+    .top-header {
+      background: var(--white);
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .mobile-sidebar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      color: var(--gray-700);
+    }
+
+    .page-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* Content Area */
+    .content {
+      padding: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    /* Form Grid - Responsive */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .form-input,
+    .form-select {
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      background: var(--white);
+      width: 100%;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--gray-400);
+      transition: 0.3s;
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Image Preview Area - Responsive */
+    .image-preview-wrapper {
+      margin-bottom: 0.5rem;
+    }
+
+    .image-preview-area {
+      border: 2px dashed var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--gray-50);
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-preview-area:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    #productImage {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+
+    .preview-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-500);
+    }
+
+    .preview-placeholder svg {
+      width: 48px;
+      height: 48px;
+      stroke: currentColor;
+    }
+
+    .preview-img {
+      max-width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: var(--radius);
+    }
+
+    /* Buttons */
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--gray-800);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-300);
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid var(--primary);
+      font-size: 0.9rem;
+      animation: slideIn 0.2s ease;
+    }
+
+    .toast.success { border-left-color: var(--success); }
+    .toast.error { border-left-color: var(--danger); }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .mobile-sidebar-toggle {
+        display: block;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .full-width {
+        grid-column: span 1;
+      }
+
+      .content {
+        padding: 1rem;
+      }
+
+      .card-body {
+        padding: 1rem;
+      }
+
+      .top-header {
+        padding: 0 1rem;
+      }
+
+      .page-title {
+        font-size: 1.2rem;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-preview-area {
+        min-height: 160px;
+      }
+      .preview-placeholder span {
+        font-size: 0.75rem;
+      }
+      .toast-container {
+        left: 1rem;
+        right: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="admin-wrapper">
@@ -16,7 +562,7 @@
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-logo">
           <div class="sidebar-logo-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
               <line x1="12" y1="18" x2="12.01" y2="18"></line>
             </svg>
@@ -24,14 +570,14 @@
           <span class="sidebar-logo-text">PhoneHub</span>
         </a>
         <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
       </div>
       <ul class="sidebar-nav">
         <li><a href="index.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
             <rect x="14" y="14" width="7" height="7"></rect>
@@ -40,14 +586,14 @@
           <span>Dashboard</span>
         </a></li>
         <li><a href="products.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
             <line x1="12" y1="18" x2="12.01" y2="18"></line>
           </svg>
           <span>Products</span>
         </a></li>
         <li><a href="add-product.html" class="active">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
@@ -56,7 +602,7 @@
       </ul>
       <div class="sidebar-footer">
         <a href="../index.html" class="back-to-site">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
@@ -71,7 +617,7 @@
       <header class="top-header">
         <div style="display: flex; align-items: center; gap: 1rem;">
           <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open sidebar">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -92,88 +638,76 @@
           </div>
           <div class="card-body">
             <form id="productForm" class="form-grid">
-              <!-- Hidden ID field for editing -->
               <input type="hidden" id="productId">
 
-              <!-- Image Upload -->
+              <!-- Image Upload - Responsive -->
               <div class="form-group full-width image-preview-wrapper">
                 <label class="form-label">Product Image</label>
                 <div class="image-preview-area" id="imagePreviewArea">
                   <input type="file" id="productImage" accept="image/*">
                   <div class="preview-placeholder" id="previewPlaceholder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                       <circle cx="8.5" cy="8.5" r="1.5"></circle>
                       <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                     <span>Click to upload product image</span>
-                    <span style="font-size: 0.8rem;">Recommended: 600x800px, PNG or JPG</span>
+                    <span style="font-size: 0.75rem;">Recommended: 600x800px, PNG or JPG</span>
                   </div>
                   <img id="previewImg" class="preview-img" style="display: none;">
                 </div>
               </div>
 
-              <!-- Name -->
               <div class="form-group">
                 <label class="form-label">Phone Name <span class="required">*</span></label>
                 <input type="text" class="form-input" id="productName" placeholder="e.g. iPhone 15 Pro Max" required>
               </div>
 
-              <!-- Brand -->
               <div class="form-group">
                 <label class="form-label">Brand <span class="required">*</span></label>
                 <input type="text" class="form-input" id="productBrand" placeholder="e.g. Apple, Samsung" required>
               </div>
 
-              <!-- Price -->
               <div class="form-group">
                 <label class="form-label">Price (₦) <span class="required">*</span></label>
                 <input type="number" class="form-input" id="productPrice" placeholder="e.g. 450000" required>
               </div>
 
-              <!-- RAM -->
               <div class="form-group">
                 <label class="form-label">RAM</label>
                 <input type="text" class="form-input" id="productRam" placeholder="e.g. 8GB">
               </div>
 
-              <!-- Storage -->
               <div class="form-group">
                 <label class="form-label">Storage</label>
                 <input type="text" class="form-input" id="productStorage" placeholder="e.g. 256GB">
               </div>
 
-              <!-- Camera -->
               <div class="form-group">
                 <label class="form-label">Camera</label>
                 <input type="text" class="form-input" id="productCamera" placeholder="e.g. 108MP Triple Camera">
               </div>
 
-              <!-- Battery -->
               <div class="form-group">
                 <label class="form-label">Battery</label>
                 <input type="text" class="form-input" id="productBattery" placeholder="e.g. 5000mAh">
               </div>
 
-              <!-- Display -->
               <div class="form-group">
                 <label class="form-label">Display</label>
                 <input type="text" class="form-input" id="productDisplay" placeholder="e.g. 6.7 AMOLED 120Hz">
               </div>
 
-              <!-- OS -->
               <div class="form-group">
                 <label class="form-label">Operating System</label>
                 <input type="text" class="form-input" id="productOs" placeholder="e.g. Android 14">
               </div>
 
-              <!-- Colors -->
               <div class="form-group">
                 <label class="form-label">Colors (comma separated)</label>
                 <input type="text" class="form-input" id="productColors" placeholder="e.g. Black, Silver, Blue">
               </div>
 
-              <!-- Status -->
               <div class="form-group">
                 <label class="form-label">Status</label>
                 <select class="form-select" id="productStatus">
@@ -182,7 +716,6 @@
                 </select>
               </div>
 
-              <!-- Featured -->
               <div class="form-group">
                 <label class="form-label">Featured Product</label>
                 <label class="toggle-switch">
@@ -191,10 +724,9 @@
                 </label>
               </div>
 
-              <!-- Form Actions -->
               <div class="form-group full-width form-actions">
                 <button type="submit" class="btn btn-primary" id="submitBtn">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   Save Product
@@ -211,7 +743,213 @@
   <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <script src="../js/data.js"></script>
-  <script src="../js/admin.js"></script>
+  <!-- Inline JS for responsive sidebar + image preview + form handling (no external dependencies) -->
+  <script>
+    (function() {
+      // DOM elements
+      const sidebar = document.getElementById('sidebar');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const mobileToggle = document.getElementById('mobileSidebarToggle');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const fileInput = document.getElementById('productImage');
+      const previewImg = document.getElementById('previewImg');
+      const previewPlaceholder = document.getElementById('previewPlaceholder');
+      const productForm = document.getElementById('productForm');
+
+      // Helper: show toast
+      function showToast(message, type = 'success') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      // Sidebar toggles (responsive)
+      function openSidebar() {
+        sidebar.classList.add('open');
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', openSidebar);
+      }
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeSidebar);
+      }
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          if (window.innerWidth > 768) {
+            // Desktop collapse not implemented fully, just close if open on mobile
+          }
+          closeSidebar();
+        });
+      }
+
+      // Close sidebar on window resize if open
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          closeSidebar();
+        }
+      });
+
+      // Image preview (responsive file handling)
+      if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+              previewImg.src = event.target.result;
+              previewImg.style.display = 'block';
+              previewPlaceholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+          } else {
+            previewImg.style.display = 'none';
+            previewPlaceholder.style.display = 'flex';
+          }
+        });
+
+        // Click on preview area to trigger file input
+        const previewArea = document.getElementById('imagePreviewArea');
+        if (previewArea) {
+          previewArea.addEventListener('click', (e) => {
+            if (e.target !== fileInput) {
+              fileInput.click();
+            }
+          });
+        }
+      }
+
+      // Save product to localStorage (hand-coded to work without external js)
+      if (productForm) {
+        productForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          // Gather form data
+          const id = document.getElementById('productId').value;
+          const name = document.getElementById('productName').value.trim();
+          const brand = document.getElementById('productBrand').value.trim();
+          const price = parseFloat(document.getElementById('productPrice').value);
+          const ram = document.getElementById('productRam').value.trim();
+          const storage = document.getElementById('productStorage').value.trim();
+          const camera = document.getElementById('productCamera').value.trim();
+          const battery = document.getElementById('productBattery').value.trim();
+          const display = document.getElementById('productDisplay').value.trim();
+          const os = document.getElementById('productOs').value.trim();
+          const colors = document.getElementById('productColors').value.trim();
+          const status = document.getElementById('productStatus').value;
+          const featured = document.getElementById('productFeatured').checked;
+
+          // Validation
+          if (!name || !brand || isNaN(price) || price <= 0) {
+            showToast('Please fill in required fields: Name, Brand, and valid Price', 'error');
+            return;
+          }
+
+          // Handle image (store as base64 if image selected, otherwise keep existing)
+          let imageBase64 = '';
+          if (previewImg.src && previewImg.style.display === 'block' && previewImg.src.startsWith('data:')) {
+            imageBase64 = previewImg.src;
+          } else {
+            // If no new image, we might keep a placeholder? For demo we set default
+            imageBase64 = 'https://placehold.co/600x800?text=Phone+Image';
+          }
+
+          // Build product object
+          const newProduct = {
+            id: id || 'p' + Date.now(),
+            name,
+            brand,
+            price,
+            specs: {
+              ram: ram || 'N/A',
+              storage: storage || 'N/A',
+              camera: camera || 'N/A',
+              battery: battery || 'N/A',
+              display: display || 'N/A',
+              os: os || 'N/A',
+              colors: colors ? colors.split(',').map(c => c.trim()) : []
+            },
+            status: status === 'in-stock' ? 'in-stock' : 'out-of-stock',
+            featured,
+            image: imageBase64,
+            createdAt: new Date().toISOString()
+          };
+
+          // Get existing products from localStorage or initialize
+          let products = [];
+          const stored = localStorage.getItem('phonehub_products');
+          if (stored) {
+            products = JSON.parse(stored);
+          }
+
+          // Check if we are editing (id exists)
+          const existingIndex = products.findIndex(p => p.id === newProduct.id);
+          if (existingIndex !== -1) {
+            products[existingIndex] = newProduct;
+            showToast('Product updated successfully!', 'success');
+          } else {
+            products.push(newProduct);
+            showToast('Product added successfully!', 'success');
+          }
+
+          // Save back to localStorage
+          localStorage.setItem('phonehub_products', JSON.stringify(products));
+
+          // Optionally reset form for new product, or redirect after short delay
+          setTimeout(() => {
+            window.location.href = 'products.html';
+          }, 1000);
+        });
+      }
+
+      // Load product data if editing (query param ?id=xxx)
+      const urlParams = new URLSearchParams(window.location.search);
+      const editId = urlParams.get('id');
+      if (editId) {
+        const stored = localStorage.getItem('phonehub_products');
+        if (stored) {
+          const products = JSON.parse(stored);
+          const product = products.find(p => p.id === editId);
+          if (product) {
+            document.getElementById('pageTitle').innerText = 'Edit Product';
+            document.getElementById('formTitle').innerText = 'Edit Product Information';
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productBrand').value = product.brand;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productRam').value = product.specs.ram !== 'N/A' ? product.specs.ram : '';
+            document.getElementById('productStorage').value = product.specs.storage !== 'N/A' ? product.specs.storage : '';
+            document.getElementById('productCamera').value = product.specs.camera !== 'N/A' ? product.specs.camera : '';
+            document.getElementById('productBattery').value = product.specs.battery !== 'N/A' ? product.specs.battery : '';
+            document.getElementById('productDisplay').value = product.specs.display !== 'N/A' ? product.specs.display : '';
+            document.getElementById('productOs').value = product.specs.os !== 'N/A' ? product.specs.os : '';
+            if (product.specs.colors && product.specs.colors.length) {
+              document.getElementById('productColors').value = product.specs.colors.join(', ');
+            }
+            document.getElementById('productStatus').value = product.status;
+            document.getElementById('productFeatured').checked = product.featured === true;
+            if (product.image && product.image !== 'https://placehold.co/600x800?text=Phone+Image') {
+              previewImg.src = product.image;
+              previewImg.style.display = 'block';
+              previewPlaceholder.style.display = 'none';
+            }
+          }
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
