@@ -7,7 +7,7 @@
   <style>
     /* ================================
        PhoneHub - Fully Responsive Styles
-       Mobile-first, no distortion
+       Optimized for all mobile views
        ================================ */
 
     /* CSS Variables */
@@ -57,7 +57,7 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: var(--gray-100);
       color: var(--gray-900);
-      line-height: 1.6;
+      line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -114,11 +114,16 @@
       color: var(--white);
     }
 
+    /* Desktop menu */
     .nav-links {
       display: flex;
       align-items: center;
       gap: 2rem;
       list-style: none;
+    }
+
+    .nav-links li {
+      position: relative;
     }
 
     .nav-links a {
@@ -150,20 +155,46 @@
       width: 100%;
     }
 
-    .nav-admin-link {
-      background: var(--gray-200);
-      color: var(--gray-700);
-      padding: 0.5rem 1rem;
+    /* Dropdown menu (desktop) */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
       border-radius: var(--radius);
-      font-size: 0.875rem;
-      font-weight: 500;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      padding: 0.5rem 0;
     }
 
-    .nav-admin-link:hover {
-      background: var(--primary);
-      color: var(--white);
+    .nav-links li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1.5rem;
+      white-space: nowrap;
+      font-size: 0.85rem;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--gray-100);
+      color: var(--primary);
+    }
+
+    .dropdown-menu a::after {
+      display: none;
+    }
+
+    /* Mobile menu button */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -174,7 +205,7 @@
     }
 
     /* ================================
-       HERO BANNER (responsive)
+       HERO BANNER
        ================================ */
     .hero {
       position: relative;
@@ -257,21 +288,140 @@
       transform: translateY(-2px);
     }
 
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--white);
-      color: var(--white);
-    }
-
-    .btn-outline:hover {
-      background: var(--white);
-      color: var(--primary);
-    }
-
     .btn-sm {
       padding: 0.4rem 0.9rem;
       font-size: 0.8rem;
       border-radius: var(--radius);
+    }
+
+    /* ================================
+       PROMOTIONAL BANNER (NEW)
+       ================================ */
+    .promo-banner {
+      background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+      margin: 1rem 1.25rem;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+    .promo-banner .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .promo-content {
+      flex: 1;
+    }
+    .promo-label {
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: white;
+      margin-bottom: 0.75rem;
+    }
+    .promo-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .promo-description {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .promo-timer {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .timer-box {
+      background: rgba(0,0,0,0.3);
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      min-width: 60px;
+    }
+    .timer-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+    .timer-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+    }
+    .promo-button {
+      background: white;
+      color: var(--danger);
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .promo-button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      background: var(--gray-100);
+    }
+    @media (max-width: 768px) {
+      .promo-banner .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .promo-title {
+        font-size: 1.4rem;
+      }
+      .promo-description {
+        font-size: 0.9rem;
+      }
+      .promo-timer {
+        justify-content: center;
+      }
+      .timer-box {
+        min-width: 50px;
+        padding: 0.4rem;
+      }
+      .timer-number {
+        font-size: 1.2rem;
+      }
+      .promo-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .promo-banner {
+        margin: 1rem 0.75rem;
+      }
+      .promo-title {
+        font-size: 1.2rem;
+      }
+      .timer-box {
+        min-width: 45px;
+      }
+      .timer-number {
+        font-size: 1rem;
+      }
+      .timer-label {
+        font-size: 0.6rem;
+      }
     }
 
     /* Sections */
@@ -309,39 +459,97 @@
       gap: 0.5rem;
     }
 
-    /* Product Grid - fully responsive no distortion */
-    .product-grid {
+    /* Category Grid */
+    .category-grid {
       display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
     }
 
     @media (min-width: 480px) {
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .category-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
     @media (min-width: 768px) {
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
+      .category-grid {
+        grid-template-columns: repeat(6, 1fr);
       }
     }
 
+    .category-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1rem 0.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--gray-200);
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.6rem;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .category-name {
+      font-weight: 600;
+      color: var(--gray-800);
+      font-size: 0.85rem;
+    }
+
+    /* Product Grid - Mobile-first: 2 columns */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    /* Very small devices (<=360px) -> 1 column */
+    @media (max-width: 360px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+
+    /* Tablet: 3 columns */
+    @media (min-width: 640px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    /* Desktop: 4 columns */
     @media (min-width: 1024px) {
       .product-grid {
         grid-template-columns: repeat(4, 1fr);
       }
     }
 
-    /* Product Card - no distortion */
+    /* Product Card */
     .product-card {
       background: var(--white);
       border-radius: var(--radius-xl);
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      position: relative;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -389,35 +597,21 @@
       letter-spacing: 0.3px;
     }
 
-    .badge-featured {
-      background: var(--accent);
-      color: var(--white);
-    }
-
-    .badge-stock {
-      background: var(--success);
-      color: var(--white);
-    }
-
-    .badge-outstock {
-      background: var(--danger);
-      color: var(--white);
-    }
-
-    .badge-delivery {
-      background: var(--primary);
-      color: var(--white);
-    }
+    .badge-featured { background: var(--accent); color: var(--white); }
+    .badge-stock { background: var(--success); color: var(--white); }
+    .badge-outstock { background: var(--danger); color: var(--white); }
+    .badge-delivery { background: var(--primary); color: var(--white); }
+    .badge-trending { background: #e11d48; color: white; }
 
     .product-info {
-      padding: 1rem;
+      padding: 0.75rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
     .product-brand {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--primary);
       font-weight: 700;
       text-transform: uppercase;
@@ -425,14 +619,11 @@
     }
 
     .product-name {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--gray-900);
       margin: 0.25rem 0 0.5rem;
       line-height: 1.4;
-      /* Allow wrapping on mobile - no distortion */
-      white-space: normal;
-      word-break: break-word;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -447,11 +638,28 @@
     }
 
     .spec-tag {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: var(--gray-600);
       background: var(--gray-100);
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.5rem;
       border-radius: var(--radius);
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin: 0.25rem 0 0.5rem;
+    }
+    .stars {
+      display: flex;
+      gap: 2px;
+      color: #fbbf24;
+      font-size: 0.7rem;
+    }
+    .rating-count {
+      font-size: 0.65rem;
+      color: var(--gray-600);
     }
 
     .product-footer {
@@ -464,41 +672,28 @@
     }
 
     .product-price {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 800;
       color: var(--gray-900);
     }
 
-    .product-price span {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--gray-600);
+    .old-price {
+      font-size: 0.7rem;
+      text-decoration: line-through;
+      color: var(--gray-500);
+      margin-left: 0.25rem;
     }
 
-    /* Brand Categories - responsive grid */
+    /* Brand Categories */
     .brands-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
-    @media (min-width: 480px) {
-      .brands-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (min-width: 768px) {
-      .brands-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .brands-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
-    }
+    @media (min-width: 480px) { .brands-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1024px) { .brands-grid { grid-template-columns: repeat(6, 1fr); } }
 
     .brand-card {
       background: var(--white);
@@ -507,16 +702,13 @@
       text-align: center;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
-      cursor: pointer;
       border: 1px solid transparent;
     }
-
     .brand-card:hover {
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
       border-color: var(--primary-light);
     }
-
     .brand-icon {
       width: 44px;
       height: 44px;
@@ -528,27 +720,16 @@
       margin: 0 auto 0.6rem;
       color: var(--primary);
     }
+    .brand-name { font-weight: 700; color: var(--gray-800); font-size: 0.9rem; }
+    .brand-count { font-size: 0.7rem; color: var(--gray-500); margin-top: 0.2rem; }
 
-    .brand-name {
-      font-weight: 700;
-      color: var(--gray-800);
-      font-size: 0.9rem;
-    }
-
-    .brand-count {
-      font-size: 0.7rem;
-      color: var(--gray-500);
-      margin-top: 0.2rem;
-    }
-
-    /* WhatsApp Floating Button - fully responsive, no distortion */
+    /* WhatsApp Floating Button */
     .whatsapp-float {
       position: fixed;
       bottom: 1.25rem;
       right: 1rem;
       z-index: 999;
     }
-
     .whatsapp-btn {
       display: flex;
       align-items: center;
@@ -561,34 +742,14 @@
       font-size: 0.9rem;
       box-shadow: var(--shadow-lg);
       transition: var(--transition);
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
     }
-
-    .whatsapp-btn svg {
-      width: 22px;
-      height: 22px;
-    }
-
     .whatsapp-btn:hover {
       background: #128c7e;
       transform: scale(1.02);
     }
-
-    @media (max-width: 480px) {
-      .whatsapp-btn span {
-        display: inline-block;
-        font-size: 0.8rem;
-      }
-      .whatsapp-btn {
-        padding: 0.55rem 1rem;
-        gap: 0.4rem;
-      }
-      .whatsapp-btn svg {
-        width: 20px;
-        height: 20px;
-      }
+    .whatsapp-btn svg {
+      width: 22px;
+      height: 22px;
     }
 
     /* Footer */
@@ -598,91 +759,32 @@
       padding: 2.5rem 1.25rem 1.25rem;
       margin-top: 3rem;
     }
-
     .footer-content {
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr;
       gap: 2rem;
+      grid-template-columns: 1fr;
     }
+    @media (min-width: 540px) { .footer-content { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .footer-content { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+    .footer-brand { color: white; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.6; }
+    .footer-title { color: white; font-weight: 700; margin-bottom: 1rem; font-size: 1rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; font-size: 0.85rem; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { max-width: 1280px; margin: 2rem auto 0; padding-top: 1.25rem; border-top: 1px solid var(--gray-800); text-align: center; font-size: 0.75rem; }
 
-    @media (min-width: 540px) {
-      .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 900px) {
-      .footer-content {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-      }
-    }
-
-    .footer-brand {
-      color: var(--white);
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-desc {
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-
-    .footer-title {
-      color: var(--white);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-links a:hover {
-      color: var(--white);
-    }
-
-    .footer-bottom {
-      max-width: 1280px;
-      margin: 2rem auto 0;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--gray-800);
-      text-align: center;
-      font-size: 0.75rem;
-    }
-
-    /* Toast Container */
-    .toast-container {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    /* Responsive adjustments for small devices */
+    /* Responsive (mobile) overrides */
     @media (max-width: 768px) {
-      .mobile-menu-btn {
-        display: block;
-      }
-
+      .mobile-menu-btn { display: block; }
       .nav-links {
         position: fixed;
         top: 64px;
         left: 0;
         right: 0;
-        background: var(--white);
+        background: white;
         flex-direction: column;
         padding: 1.5rem;
         gap: 1.2rem;
@@ -692,118 +794,77 @@
         visibility: hidden;
         transition: transform 0.3s ease, opacity 0.2s;
         z-index: 999;
-        align-items: center;
+        align-items: flex-start;
       }
-
       .nav-links.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
       }
-
       .nav-links a {
         font-size: 1rem;
+        white-space: normal;
       }
-
+      /* Mobile dropdown */
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: transparent;
+        padding-left: 1rem;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+      .dropdown-menu.active {
+        display: block;
+      }
+      .dropdown-menu a {
+        padding: 0.5rem 0;
+        white-space: normal;
+      }
+      .nav-links li.has-dropdown > a::after {
+        content: " ▼";
+        font-size: 0.7rem;
+        margin-left: 0.3rem;
+      }
       .hero {
         min-height: 320px;
         padding: 2rem 0;
       }
-
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .hero p {
-        font-size: 0.9rem;
-      }
-
-      .section {
-        padding: 2rem 1rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
-
-      .product-info {
-        padding: 0.85rem;
-      }
-
-      .product-price {
-        font-size: 1.1rem;
-      }
-
-      .btn-sm {
-        padding: 0.35rem 0.8rem;
-        font-size: 0.75rem;
-      }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 0.9rem; }
+      .section { padding: 2rem 1rem; }
+      .section-title { font-size: 1.5rem; }
+      .product-info { padding: 0.65rem; }
+      .product-price { font-size: 0.95rem; }
+      .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.7rem; }
     }
 
     @media (max-width: 480px) {
-      .nav-container {
-        padding: 0 0.8rem;
-      }
-      
-      .logo {
-        font-size: 1.2rem;
-      }
-      
-      .hero h1 {
-        font-size: 1.5rem;
-      }
-      
-      .hero .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-      }
-      
-      .section-title {
-        font-size: 1.3rem;
-      }
-      
-      .brand-card {
-        padding: 1rem 0.25rem;
-      }
-      
-      .brand-name {
-        font-size: 0.8rem;
-      }
-      
-      .brand-icon {
-        width: 38px;
-        height: 38px;
-      }
-      
-      .product-name {
-        font-size: 0.9rem;
-      }
-      
-      .spec-tag {
-        font-size: 0.65rem;
-      }
+      .nav-container { padding: 0 0.8rem; }
+      .logo { font-size: 1.2rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero .btn { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+      .section-title { font-size: 1.3rem; }
+      .brand-card { padding: 1rem 0.25rem; }
+      .brand-name { font-size: 0.8rem; }
+      .brand-icon { width: 38px; height: 38px; }
+      .product-name { font-size: 0.85rem; }
+      .spec-tag { font-size: 0.6rem; }
+      .whatsapp-btn span { display: inline-block; font-size: 0.8rem; }
+      .whatsapp-btn { padding: 0.55rem 1rem; gap: 0.4rem; }
+      .whatsapp-btn svg { width: 20px; height: 20px; }
     }
 
     /* Animation */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .fade-in {
-      animation: fadeInUp 0.4s ease forwards;
-    }
-
-    /* Utility */
-    .text-center {
-      text-align: center;
-    }
+    .fade-in { animation: fadeInUp 0.4s ease forwards; }
   </style>
 </head>
 <body>
@@ -821,7 +882,17 @@
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="products.html">All Phones</a></li>
+        <li><a href="phone.html">Phones</a></li>
+        <li class="has-dropdown">
+          <a href="#">Accessories ▼</a>
+          <div class="dropdown-menu" id="accessoriesDropdown">
+            <a href="phone.html?cat=powerbanks">Power Bank</a>
+            <a href="phone.html?cat=earphones">Earphones</a>
+            <a href="phone.html?cat=earbuds">Earbuds</a>
+            <a href="phone.html?cat=chargers">Chargers</a>
+            <a href="phone.html?cat=cases">Cases & Covers</a>
+          </div>
+        </li>
         <li><a href="admin/index.html" class="nav-admin-link">Admin</a></li>
       </ul>
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -842,7 +913,7 @@
     <div class="hero-content">
       <h1>Premium Smartphones at Best Prices</h1>
       <p>Discover the latest flagship phones with pay on delivery available across Nigeria.</p>
-      <a href="products.html" class="btn btn-primary">
+      <a href="phone.html" class="btn btn-primary">
         Browse Phones
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -852,121 +923,105 @@
     </div>
   </section>
 
-  <!-- Featured Phones -->
-  <section class="section">
+  <!-- RESPONSIVE PROMOTIONAL BANNER (NEW) -->
+  <div class="promo-banner">
+    <div class="container">
+      <div class="promo-content">
+        <div class="promo-label">🔥 Limited Time Offer</div>
+        <div class="promo-title">Up to 30% Off on Accessories!</div>
+        <div class="promo-description">Power banks, earbuds, headphones & chargers – while stocks last.</div>
+        <div class="promo-timer">
+          <div class="timer-box"><div class="timer-number">02</div><div class="timer-label">Days</div></div>
+          <div class="timer-box"><div class="timer-number">12</div><div class="timer-label">Hours</div></div>
+          <div class="timer-box"><div class="timer-number">45</div><div class="timer-label">Mins</div></div>
+          <div class="timer-box"><div class="timer-number">30</div><div class="timer-label">Secs</div></div>
+        </div>
+      </div>
+      <a href="phone.html?cat=accessories" class="promo-button">Shop Now →</a>
+    </div>
+  </div>
+
+  <!-- Category Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-header">
+      <h2 class="section-title">📂 Shop by Category</h2>
+      <a href="phone.html" class="view-all">All Categories <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+    </div>
+    <div class="category-grid">
+      <a href="phone.html?cat=phones" class="category-card"><div class="category-icon">📱</div><div class="category-name">Phones</div></a>
+      <a href="phone.html?cat=powerbanks" class="category-card"><div class="category-icon">🔋</div><div class="category-name">Power Banks</div></a>
+      <a href="phone.html?cat=earphones" class="category-card"><div class="category-icon">🎧</div><div class="category-name">Earphones</div></a>
+      <a href="phone.html?cat=earbuds" class="category-card"><div class="category-icon">🦻</div><div class="category-name">Earbuds</div></a>
+      <a href="phone.html?cat=chargers" class="category-card"><div class="category-icon">⚡</div><div class="category-name">Chargers</div></a>
+      <a href="phone.html?cat=cases" class="category-card"><div class="category-icon">📲</div><div class="category-name">Cases & Covers</div></a>
+    </div>
+  </section>
+
+  <!-- Featured Phones (first 4 shown for brevity) -->
+  <section class="section" style="padding-top: 0;">
     <div class="section-header">
       <h2 class="section-title">Featured Phones</h2>
-      <a href="products.html" class="view-all">
-        View All
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
+      <a href="phone.html" class="view-all">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
     </div>
-    <div class="product-grid" id="featuredGrid">
+    <div class="product-grid">
       <!-- Product 1 -->
       <div class="product-card fade-in">
-        <a href="product.html?id=p1">
+        <a href="phone-details.html">
           <div class="product-image">
-            <div class="product-badges">
-              <span class="badge badge-featured">Featured</span>
-              <span class="badge badge-stock">In Stock</span>
-              <span class="badge badge-delivery">Pay on Delivery</span>
-            </div>
+            <div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div>
             <img src="images/phone-1.jpg" alt="NovaTech X1 Pro" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=NovaTech+X1'">
           </div>
         </a>
         <div class="product-info">
           <div class="product-brand">NovaTech</div>
-          <a href="product.html?id=p1"><h3 class="product-name">NovaTech X1 Pro</h3></a>
-          <div class="product-specs">
-            <span class="spec-tag">12GB RAM</span>
-            <span class="spec-tag">256GB</span>
-            <span class="spec-tag">108MP Camera</span>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">₦245,000</div>
-            <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a>
-          </div>
+          <a href="phone-details.html"><h3 class="product-name">NovaTech X1 Pro</h3></a>
+          <div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">108MP Camera</span></div>
+          <div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
       <!-- Product 2 -->
       <div class="product-card fade-in">
-        <a href="product.html?id=p2">
+        <a href="phone-details.html?id=p2">
           <div class="product-image">
-            <div class="product-badges">
-              <span class="badge badge-featured">Featured</span>
-              <span class="badge badge-stock">In Stock</span>
-              <span class="badge badge-delivery">Pay on Delivery</span>
-            </div>
+            <div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div>
             <img src="images/phone-2.jpg" alt="Galaxy Prime S24" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
           </div>
         </a>
         <div class="product-info">
           <div class="product-brand">Galaxy</div>
-          <a href="product.html?id=p2"><h3 class="product-name">Galaxy Prime S24</h3></a>
-          <div class="product-specs">
-            <span class="spec-tag">8GB RAM</span>
-            <span class="spec-tag">128GB</span>
-            <span class="spec-tag">50MP Camera</span>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">₦389,000</div>
-            <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24" target="_blank" class="btn btn-whatsapp btn-sm">Order</a>
-          </div>
+          <a href="phone-details.html?id=p2"><h3 class="product-name">Galaxy Prime S24</h3></a>
+          <div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span class="spec-tag">50MP Camera</span></div>
+          <div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
       <!-- Product 3 -->
       <div class="product-card fade-in">
-        <a href="product.html?id=p3">
+        <a href="phone-details.html?id=p3">
           <div class="product-image">
-            <div class="product-badges">
-              <span class="badge badge-featured">Featured</span>
-              <span class="badge badge-stock">In Stock</span>
-              <span class="badge badge-delivery">Pay on Delivery</span>
-            </div>
+            <div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div>
             <img src="images/phone-3.jpg" alt="Aurora Edge Ultra" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Aurora+Ultra'">
           </div>
         </a>
         <div class="product-info">
           <div class="product-brand">Aurora</div>
-          <a href="product.html?id=p3"><h3 class="product-name">Aurora Edge Ultra</h3></a>
-          <div class="product-specs">
-            <span class="spec-tag">16GB RAM</span>
-            <span class="spec-tag">512GB</span>
-            <span class="spec-tag">200MP Camera</span>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">₦520,000</div>
-            <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra" target="_blank" class="btn btn-whatsapp btn-sm">Order</a>
-          </div>
+          <a href="phone-details.html?id=p3"><h3 class="product-name">Aurora Edge Ultra</h3></a>
+          <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span class="spec-tag">200MP Camera</span></div>
+          <div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
       <!-- Product 4 -->
       <div class="product-card fade-in">
-        <a href="product.html?id=p6">
+        <a href="phone-details.html?id=p6">
           <div class="product-image">
-            <div class="product-badges">
-              <span class="badge badge-featured">Featured</span>
-              <span class="badge badge-stock">In Stock</span>
-              <span class="badge badge-delivery">Pay on Delivery</span>
-            </div>
+            <div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div>
             <img src="images/phone-6.jpg" alt="RogueFire GT" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=RogueFire+GT'">
           </div>
         </a>
         <div class="product-info">
           <div class="product-brand">RogueFire</div>
-          <a href="product.html?id=p6"><h3 class="product-name">RogueFire GT</h3></a>
-          <div class="product-specs">
-            <span class="spec-tag">16GB RAM</span>
-            <span class="spec-tag">256GB</span>
-            <span class="spec-tag">64MP Camera</span>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">₦310,000</div>
-            <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT" target="_blank" class="btn btn-whatsapp btn-sm">Order</a>
-          </div>
+          <a href="phone-details.html?id=p6"><h3 class="product-name">RogueFire GT</h3></a>
+          <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">64MP Camera</span></div>
+          <div class="product-footer"><div class="product-price">₦310,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
     </div>
@@ -974,39 +1029,54 @@
 
   <!-- Brand Categories -->
   <section class="section" style="padding-top: 0;">
-    <div class="section-header">
-      <h2 class="section-title">Shop by Brand</h2>
-    </div>
-    <div class="brands-grid" id="brandsGrid">
-      <a href="products.html?brand=NovaTech" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">NovaTech</div><div class="brand-count">2 phones</div></a>
-      <a href="products.html?brand=Galaxy" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Galaxy</div><div class="brand-count">1 phone</div></a>
-      <a href="products.html?brand=Aurora" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Aurora</div><div class="brand-count">1 phone</div></a>
-      <a href="products.html?brand=LuxNote" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">LuxNote</div><div class="brand-count">1 phone</div></a>
-      <a href="products.html?brand=PixelLeaf" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">PixelLeaf</div><div class="brand-count">1 phone</div></a>
-      <a href="products.html?brand=RogueFire" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">RogueFire</div><div class="brand-count">1 phone</div></a>
+    <div class="section-header"><h2 class="section-title">Shop by Brand</h2></div>
+    <div class="brands-grid">
+      <a href="phone.html?brand=NovaTech" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">NovaTech</div><div class="brand-count">2 phones</div></a>
+      <a href="phone.html?brand=Galaxy" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Galaxy</div><div class="brand-count">1 phone</div></a>
+      <a href="phone.html?brand=Aurora" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Aurora</div><div class="brand-count">1 phone</div></a>
+      <a href="phone.html?brand=LuxNote" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">LuxNote</div><div class="brand-count">1 phone</div></a>
+      <a href="phone.html?brand=PixelLeaf" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">PixelLeaf</div><div class="brand-count">1 phone</div></a>
+      <a href="phone.html?brand=RogueFire" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">RogueFire</div><div class="brand-count">1 phone</div></a>
     </div>
   </section>
 
-  <!-- Latest Arrivals -->
+  <!-- Latest Arrivals (only 4 shown for brevity) -->
   <section class="section" style="padding-top: 0;">
-    <div class="section-header">
-      <h2 class="section-title">Latest Arrivals</h2>
-      <a href="products.html" class="view-all">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-    </div>
+    <div class="section-header"><h2 class="section-title">Latest Arrivals</h2><a href="phone.html" class="view-all">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
     <div class="product-grid">
-      <div class="product-card fade-in"><a href="product.html?id=p1"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-1.jpg" alt="NovaTech X1 Pro" onerror="this.src='https://placehold.co/400x500?text=NovaTech'"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><a href="product.html?id=p1"><h3 class="product-name">NovaTech X1 Pro</h3></a><div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
-      <div class="product-card fade-in"><a href="product.html?id=p2"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-2.jpg" alt="Galaxy Prime S24" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><a href="product.html?id=p2"><h3 class="product-name">Galaxy Prime S24</h3></a><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
-      <div class="product-card fade-in"><a href="product.html?id=p5"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-5.jpg" alt="PixelLeaf 9 Pro" onerror="this.src='https://placehold.co/400x500?text=PixelLeaf+9'"></div></a><div class="product-info"><div class="product-brand">PixelLeaf</div><a href="product.html?id=p5"><h3 class="product-name">PixelLeaf 9 Pro</h3></a><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦175,000</div><a href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
-      <div class="product-card fade-in"><a href="product.html?id=p7"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-7.jpg" alt="CloudBook Air" onerror="this.src='https://placehold.co/400x500?text=CloudBook+Air'"></div></a><div class="product-info"><div class="product-brand">CloudBook</div><a href="product.html?id=p7"><h3 class="product-name">CloudBook Air</h3></a><div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><a href="phone-details.html?id=p1"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-1.jpg" alt="NovaTech X1 Pro" onerror="this.src='https://placehold.co/400x500?text=NovaTech'"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><a href="phone-details.html?id=p1"><h3 class="product-name">NovaTech X1 Pro</h3></a><div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><a href="phone-details.html?id=p2"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-2.jpg" alt="Galaxy Prime S24" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><a href="phone-details.html?id=p2"><h3 class="product-name">Galaxy Prime S24</h3></a><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><a href="phone-details.html?id=p5"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-5.jpg" alt="PixelLeaf 9 Pro" onerror="this.src='https://placehold.co/400x500?text=PixelLeaf+9'"></div></a><div class="product-info"><div class="product-brand">PixelLeaf</div><a href="phone-details.html?id=p5"><h3 class="product-name">PixelLeaf 9 Pro</h3></a><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦175,000</div><a href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><a href="phone-details.html?id=p7"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-7.jpg" alt="CloudBook Air" onerror="this.src='https://placehold.co/400x500?text=CloudBook+Air'"></div></a><div class="product-info"><div class="product-brand">CloudBook</div><a href="phone-details.html?id=p7"><h3 class="product-name">CloudBook Air</h3></a><div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- Accessories & Gadgets (first 4 only, rest kept as before) -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-header"><h2 class="section-title">📱 Accessories & Gadgets</h2><a href="phone.html?cat=accessories" class="view-all">Shop All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+    <div class="product-grid">
+      <!-- Power Bank -->
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Power+Bank+20000mAh&font=montserrat" alt="Ultra Power Bank" loading="lazy"></div><div class="product-info"><div class="product-brand">PowerHub</div><h3 class="product-name">Ultra Power Bank 20000mAh</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(342)</span></div><div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast Charge</span><span class="spec-tag">USB-C</span></div><div class="product-footer"><div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Ultra%20Power%20Bank" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <!-- Wireless Earbuds -->
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Hot</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=TWS+Earbuds+Pro&font=montserrat" alt="AirSound Pro" loading="lazy"></div><div class="product-info"><div class="product-brand">AirSound</div><h3 class="product-name">AirSound Pro TWS Earbuds</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(567)</span></div><div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span class="spec-tag">40hrs Playtime</span><span class="spec-tag">Bluetooth 5.3</span></div><div class="product-footer"><div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a href="https://wa.me/2348012345678?text=Order+AirSound+Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <!-- Over-Ear Headphones -->
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Best Seller</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Wireless+Headphones&font=montserrat" alt="BassBoom" loading="lazy"></div><div class="product-info"><div class="product-brand">BassBoom</div><h3 class="product-name">BassBoom Wireless Headphones</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(892)</span></div><div class="product-specs"><span class="spec-tag">Hi-Fi Sound</span><span class="spec-tag">30hrs Battery</span><span class="spec-tag">Foldable</span></div><div class="product-footer"><div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a href="https://wa.me/2348012345678?text=Order+BassBoom" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <!-- Slim Power Bank -->
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Slim+Power+Bank&font=montserrat" alt="SlimFit" loading="lazy"></div><div class="product-info"><div class="product-brand">SlimFit</div><h3 class="product-name">SlimFit 10000mAh Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(213)</span></div><div class="product-specs"><span class="spec-tag">10000mAh</span><span class="spec-tag">Lightweight</span><span class="spec-tag">Dual USB</span></div><div class="product-footer"><div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a href="https://wa.me/2348012345678?text=Order+SlimFit" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+    </div>
+    <!-- Second row (additional accessories) -->
+    <div class="product-grid" style="margin-top: 1.5rem;">
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Sport+Earhooks&font=montserrat" alt="SportFlex" loading="lazy"></div><div class="product-info"><div class="product-brand">SportFlex</div><h3 class="product-name">SportFlex Wireless Earhooks</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(124)</span></div><div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs Battery</span><span class="spec-tag">Magnetic</span></div><div class="product-footer"><div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a href="https://wa.me/2348012345678?text=Order+SportFlex" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=65W+GaN+Charger&font=montserrat" alt="GaN Charger" loading="lazy"></div><div class="product-info"><div class="product-brand">VoltCore</div><h3 class="product-name">GaN 65W Fast Charger + Cable</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(408)</span></div><div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span><span class="spec-tag">Type-C</span></div><div class="product-footer"><div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a href="https://wa.me/2348012345678?text=Order+GaN+Charger" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Limited</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Ceramic+Earbuds&font=montserrat" alt="LuxePod" loading="lazy"></div><div class="product-info"><div class="product-brand">LuxePod</div><h3 class="product-name">LuxePod Ceramic Edition TWS</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(287)</span></div><div class="product-specs"><span class="spec-tag">Hi-Res Audio</span><span class="spec-tag">Wireless Charging</span><span class="spec-tag">IPX7</span></div><div class="product-footer"><div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a href="https://wa.me/2348012345678?text=Order+LuxePod" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
+      <div class="product-card fade-in"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">MagSafe</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Magnetic+Power+Bank&font=montserrat" alt="MagJuice" loading="lazy"></div><div class="product-info"><div class="product-brand">MagJuice</div><h3 class="product-name">MagJuice Magnetic Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(156)</span></div><div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span><span class="spec-tag">15W Wireless</span></div><div class="product-footer"><div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a href="https://wa.me/2348012345678?text=Order+MagJuice" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div></div></div>
     </div>
   </section>
 
   <!-- WhatsApp Floating Button -->
   <div class="whatsapp-float">
     <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20a%20phone" target="_blank" class="whatsapp-btn">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       <span>Order on WhatsApp</span>
     </a>
   </div>
@@ -1015,30 +1085,56 @@
   <footer class="footer">
     <div class="footer-content">
       <div><div class="footer-brand">PhoneHub</div><p class="footer-desc">Your trusted destination for premium smartphones in Nigeria. Pay on delivery available nationwide.</p></div>
-      <div><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">All Phones</a></li></ul></div>
+      <div><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="phone.html">Phones</a></li><li><a href="phone.html?cat=powerbanks">Power Banks</a></li><li><a href="phone.html?cat=earbuds">Earbuds</a></li></ul></div>
       <div><h4 class="footer-title">Contact</h4><ul class="footer-links"><li>WhatsApp: +234 801 234 5678</li><li>Email: info@phonehub.ng</li><li>Lagos, Nigeria</li></ul></div>
       <div><h4 class="footer-title">Services</h4><ul class="footer-links"><li>Pay on Delivery</li><li>Free Shipping</li><li>24/7 Support</li></ul></div>
     </div>
     <div class="footer-bottom"><p>&copy; 2025 PhoneHub. All rights reserved.</p></div>
   </footer>
 
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- Mobile menu toggle script -->
+  <!-- Mobile menu & dropdown script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
       const navLinks = document.getElementById('navLinks');
+      const dropdownTrigger = document.querySelector('.has-dropdown > a');
+      const dropdownMenu = document.getElementById('accessoriesDropdown');
+
+      // Toggle mobile menu
       if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', () => {
           navLinks.classList.toggle('active');
         });
-        navLinks.querySelectorAll('a').forEach(link => {
+        // Close menu when a link (except dropdown trigger) is clicked
+        navLinks.querySelectorAll('a:not(.has-dropdown > a)').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('active');
           });
         });
       }
+
+      // Mobile dropdown toggle (only on small screens)
+      function handleMobileDropdown() {
+        if (window.innerWidth <= 768 && dropdownTrigger && dropdownMenu) {
+          dropdownTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('active');
+          });
+          // Close dropdown when clicking a sublink
+          dropdownMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              dropdownMenu.classList.remove('active');
+              navLinks.classList.remove('active');
+            });
+          });
+        } else if (dropdownMenu) {
+          // On desktop, ensure dropdown is not left open
+          dropdownMenu.classList.remove('active');
+        }
+      }
+
+      handleMobileDropdown();
+      window.addEventListener('resize', handleMobileDropdown);
     });
   </script>
 </body>

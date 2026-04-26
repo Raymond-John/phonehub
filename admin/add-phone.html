@@ -585,14 +585,14 @@
           </svg>
           <span>Dashboard</span>
         </a></li>
-        <li><a href="products.html">
+        <li><a href="phone.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
             <line x1="12" y1="18" x2="12.01" y2="18"></line>
           </svg>
-          <span>Products</span>
+          <span>phone</span>
         </a></li>
-        <li><a href="add-product.html" class="active">
+        <li><a href="add-phone.html" class="active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -680,7 +680,7 @@
 
               <div class="form-group">
                 <label class="form-label">Storage</label>
-                <input type="text" class="form-input" id="productStorage" placeholder="e.g. 256GB">
+                <input type="text" class="form-input" id="phonetorage" placeholder="e.g. 256GB">
               </div>
 
               <div class="form-group">
@@ -710,7 +710,7 @@
 
               <div class="form-group">
                 <label class="form-label">Status</label>
-                <select class="form-select" id="productStatus">
+                <select class="form-select" id="phonetatus">
                   <option value="in-stock">In Stock</option>
                   <option value="out-of-stock">Out of Stock</option>
                 </select>
@@ -731,7 +731,7 @@
                   </svg>
                   Save Product
                 </button>
-                <a href="products.html" class="btn btn-secondary">Cancel</a>
+                <a href="phone.html" class="btn btn-secondary">Cancel</a>
               </div>
             </form>
           </div>
@@ -843,13 +843,13 @@
           const brand = document.getElementById('productBrand').value.trim();
           const price = parseFloat(document.getElementById('productPrice').value);
           const ram = document.getElementById('productRam').value.trim();
-          const storage = document.getElementById('productStorage').value.trim();
+          const storage = document.getElementById('phonetorage').value.trim();
           const camera = document.getElementById('productCamera').value.trim();
           const battery = document.getElementById('productBattery').value.trim();
           const display = document.getElementById('productDisplay').value.trim();
           const os = document.getElementById('productOs').value.trim();
           const colors = document.getElementById('productColors').value.trim();
-          const status = document.getElementById('productStatus').value;
+          const status = document.getElementById('phonetatus').value;
           const featured = document.getElementById('productFeatured').checked;
 
           // Validation
@@ -888,29 +888,29 @@
             createdAt: new Date().toISOString()
           };
 
-          // Get existing products from localStorage or initialize
-          let products = [];
-          const stored = localStorage.getItem('phonehub_products');
+          // Get existing phone from localStorage or initialize
+          let phone = [];
+          const stored = localStorage.getItem('phonehub_phone');
           if (stored) {
-            products = JSON.parse(stored);
+            phone = JSON.parse(stored);
           }
 
           // Check if we are editing (id exists)
-          const existingIndex = products.findIndex(p => p.id === newProduct.id);
+          const existingIndex = phone.findIndex(p => p.id === newProduct.id);
           if (existingIndex !== -1) {
-            products[existingIndex] = newProduct;
+            phone[existingIndex] = newProduct;
             showToast('Product updated successfully!', 'success');
           } else {
-            products.push(newProduct);
+            phone.push(newProduct);
             showToast('Product added successfully!', 'success');
           }
 
           // Save back to localStorage
-          localStorage.setItem('phonehub_products', JSON.stringify(products));
+          localStorage.setItem('phonehub_phone', JSON.stringify(phone));
 
           // Optionally reset form for new product, or redirect after short delay
           setTimeout(() => {
-            window.location.href = 'products.html';
+            window.location.href = 'phone.html';
           }, 1000);
         });
       }
@@ -919,10 +919,10 @@
       const urlParams = new URLSearchParams(window.location.search);
       const editId = urlParams.get('id');
       if (editId) {
-        const stored = localStorage.getItem('phonehub_products');
+        const stored = localStorage.getItem('phonehub_phone');
         if (stored) {
-          const products = JSON.parse(stored);
-          const product = products.find(p => p.id === editId);
+          const phone = JSON.parse(stored);
+          const product = phone.find(p => p.id === editId);
           if (product) {
             document.getElementById('pageTitle').innerText = 'Edit Product';
             document.getElementById('formTitle').innerText = 'Edit Product Information';
@@ -931,7 +931,7 @@
             document.getElementById('productBrand').value = product.brand;
             document.getElementById('productPrice').value = product.price;
             document.getElementById('productRam').value = product.specs.ram !== 'N/A' ? product.specs.ram : '';
-            document.getElementById('productStorage').value = product.specs.storage !== 'N/A' ? product.specs.storage : '';
+            document.getElementById('phonetorage').value = product.specs.storage !== 'N/A' ? product.specs.storage : '';
             document.getElementById('productCamera').value = product.specs.camera !== 'N/A' ? product.specs.camera : '';
             document.getElementById('productBattery').value = product.specs.battery !== 'N/A' ? product.specs.battery : '';
             document.getElementById('productDisplay').value = product.specs.display !== 'N/A' ? product.specs.display : '';
@@ -939,7 +939,7 @@
             if (product.specs.colors && product.specs.colors.length) {
               document.getElementById('productColors').value = product.specs.colors.join(', ');
             }
-            document.getElementById('productStatus').value = product.status;
+            document.getElementById('phonetatus').value = product.status;
             document.getElementById('productFeatured').checked = product.featured === true;
             if (product.image && product.image !== 'https://placehold.co/600x800?text=Phone+Image') {
               previewImg.src = product.image;
