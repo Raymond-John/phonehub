@@ -163,7 +163,7 @@
       color: var(--gray-700);
     }
 
-    /* ========== HERO (restored with original SVG) ========== */
+    /* ========== HERO ========== */
     .hero {
       position: relative;
       min-height: 380px;
@@ -342,7 +342,7 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* ========== SECTIONS & GRIDS (unchanged) ========== */
+    /* ========== SECTIONS & GRIDS ========== */
     .section {
       max-width: 1280px;
       margin: 0 auto;
@@ -425,25 +425,22 @@
       font-size: 0.85rem;
     }
 
-    /* Product grid – mobile 2 columns */
+    /* ========== PRODUCT GRID – FIXED: always 2 columns on mobile ========== */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
-    @media (max-width: 360px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-      }
-    }
+    /* Tablet: 3 columns */
     @media (min-width: 640px) {
       .product-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
       }
     }
+
+    /* Desktop: 4 columns */
     @media (min-width: 1024px) {
       .product-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -705,7 +702,7 @@
       color: white;
     }
 
-    /* ========== RESPONSIVE (MOBILE) – unchanged ========== */
+    /* ========== RESPONSIVE MOBILE ========== */
     @media (max-width: 768px) {
       .mobile-menu-btn { display: block; }
       .nav-links {
@@ -819,7 +816,7 @@
     </div>
   </nav>
 
-  <!-- Hero Banner (original SVG arrow restored) -->
+  <!-- Hero Banner -->
   <section class="hero">
     <div class="hero-bg">
       <img src="images/hero-banner.jpg" alt="Smartphones" onerror="this.style.display='none'">
@@ -878,7 +875,6 @@
       <a href="phone.html" class="view-all">View All →</a>
     </div>
     <div class="product-grid">
-      <!-- Product 1 -->
       <div class="product-card">
         <a href="phone-details.html">
           <div class="product-image">
@@ -893,7 +889,6 @@
           <div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
-      <!-- Product 2 -->
       <div class="product-card">
         <a href="phone-details.html?id=p2">
           <div class="product-image">
@@ -908,7 +903,6 @@
           <div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
-      <!-- Product 3 -->
       <div class="product-card">
         <a href="phone-details.html?id=p3">
           <div class="product-image">
@@ -923,7 +917,6 @@
           <div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra" target="_blank" class="btn btn-whatsapp btn-sm">Order</a></div>
         </div>
       </div>
-      <!-- Product 4 -->
       <div class="product-card">
         <a href="phone-details.html?id=p6">
           <div class="product-image">
@@ -990,7 +983,7 @@
     </a>
   </div>
 
-  <!-- Footer (all text now white) -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div><div class="footer-brand">PhoneHub</div><p class="footer-desc">Your trusted destination for premium smartphones in Nigeria. Pay on delivery available nationwide.</p></div>
