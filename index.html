@@ -57,7 +57,7 @@
       display: block;
     }
 
-    /* ========== NAVIGATION (simplified: logo + search) ========== */
+    /* ========== NAVIGATION ========== */
     .navbar {
       background: var(--white);
       box-shadow: var(--shadow);
@@ -85,6 +85,7 @@
       font-weight: 800;
       color: var(--primary);
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .logo-icon {
@@ -141,7 +142,7 @@
       background: var(--secondary);
     }
 
-    /* ========== SIDE NAVBAR (VERTICAL ON ALL DEVICES) ========== */
+    /* ========== SIDE NAVBAR ========== */
     .side-navbar {
       background: var(--white);
       border-radius: var(--radius-lg);
@@ -172,6 +173,7 @@
       font-size: 0.9rem;
       color: var(--gray-700);
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .side-navbar-list li a:hover {
@@ -184,7 +186,7 @@
       font-size: 1.1rem;
     }
 
-    /* Main content wrapper (flex layout for sidebar + content) */
+    /* Main content wrapper */
     .main-wrapper {
       max-width: 1280px;
       margin: 1rem auto 0;
@@ -198,7 +200,6 @@
       min-width: 0;
     }
 
-    /* Desktop: sidebar fixed width & sticky */
     @media (min-width: 769px) {
       .side-navbar {
         position: sticky;
@@ -210,82 +211,49 @@
       }
     }
 
-    /* Mobile: side navbar stays vertical, full width, above content */
     @media (max-width: 768px) {
       .main-wrapper {
         flex-direction: column;
         gap: 1rem;
       }
-
       .side-navbar {
         width: 100%;
         position: static;
-        margin-bottom: 0;
       }
-
       .side-navbar-list li a {
         padding: 0.75rem 1rem;
       }
-
       .nav-container {
         flex-wrap: wrap;
         height: auto;
         padding: 0.75rem 1rem;
         gap: 0.8rem;
       }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
       .search-container {
         max-width: 100%;
-        margin-left: 0;
         width: 100%;
       }
-
       .promo-banner .container {
         flex-direction: column;
         text-align: center;
         padding: 1.5rem;
       }
-
-      .promo-title {
-        font-size: 1.4rem;
-      }
-
       .promo-timer {
         justify-content: center;
       }
-
       .timer-box {
         min-width: 50px;
         padding: 0.4rem;
       }
-
-      .timer-number {
-        font-size: 1.2rem;
-      }
-
-      .promo-button {
-        width: 100%;
-        text-align: center;
-        white-space: normal;
-      }
-
-      .section-title {
-        font-size: 1.3rem;
-      }
     }
 
-    /* ========== PROMO BANNER ========== */
+    /* Promo banner, category grid, product grid same as before */
     .promo-banner {
       background: linear-gradient(135deg, #f59e0b, #dc2626);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-md);
       margin-bottom: 2rem;
     }
-
     .promo-banner .container {
       padding: 2rem 1.5rem;
       display: flex;
@@ -294,11 +262,9 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-
     .promo-content {
       flex: 1;
     }
-
     .promo-label {
       background: rgba(255, 255, 255, 0.2);
       display: inline-block;
@@ -309,7 +275,6 @@
       color: white;
       margin-bottom: 0.75rem;
     }
-
     .promo-title {
       font-size: 1.75rem;
       font-weight: 800;
@@ -317,20 +282,17 @@
       line-height: 1.2;
       margin-bottom: 0.5rem;
     }
-
     .promo-description {
       color: rgba(255, 255, 255, 0.9);
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-
     .promo-timer {
       display: flex;
       gap: 1rem;
       margin-top: 0.5rem;
       flex-wrap: wrap;
     }
-
     .timer-box {
       background: rgba(0, 0, 0, 0.3);
       padding: 0.5rem;
@@ -338,20 +300,17 @@
       text-align: center;
       min-width: 60px;
     }
-
     .timer-number {
       font-size: 1.5rem;
       font-weight: 800;
       color: white;
       line-height: 1;
     }
-
     .timer-label {
       font-size: 0.7rem;
       color: rgba(255, 255, 255, 0.8);
       text-transform: uppercase;
     }
-
     .promo-button {
       background: white;
       color: var(--danger);
@@ -361,17 +320,13 @@
       transition: var(--transition);
       white-space: nowrap;
     }
-
     .promo-button:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-lg);
     }
-
-    /* ========== SECTIONS & GRIDS ========== */
     .section {
       margin-bottom: 2rem;
     }
-
     .section-header {
       display: flex;
       align-items: center;
@@ -380,13 +335,11 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-
     .section-title {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--gray-900);
     }
-
     .view-all {
       color: var(--primary);
       font-weight: 600;
@@ -394,31 +347,19 @@
       align-items: center;
       gap: 0.25rem;
       font-size: 0.9rem;
+      cursor: pointer;
     }
-
-    .view-all:hover {
-      gap: 0.5rem;
-    }
-
-    /* Category grid */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
-
     @media (min-width: 480px) {
-      .category-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .category-grid { grid-template-columns: repeat(4, 1fr); }
     }
-
     @media (min-width: 768px) {
-      .category-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
+      .category-grid { grid-template-columns: repeat(6, 1fr); }
     }
-
     .category-card {
       background: white;
       border-radius: var(--radius-lg);
@@ -427,14 +368,13 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
       border: 1px solid var(--gray-200);
+      cursor: pointer;
     }
-
     .category-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
       border-color: var(--primary-light);
     }
-
     .category-icon {
       width: 48px;
       height: 48px;
@@ -447,32 +387,25 @@
       color: var(--primary);
       font-size: 1.5rem;
     }
-
     .category-name {
       font-weight: 600;
       font-size: 0.85rem;
     }
-
-    /* Product grid */
+    /* ========== RESPONSIVE PRODUCT GRID ========== */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);  /* 2 on mobile */
       gap: 1rem;
     }
-
     @media (min-width: 640px) {
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-      }
+      .product-grid { gap: 1.5rem; }
     }
-
+    @media (min-width: 768px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); } /* 3 on tablet */
+    }
     @media (min-width: 1024px) {
-      .product-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .product-grid { grid-template-columns: repeat(4, 1fr); } /* 4 on laptop/desktop */
     }
-
     .product-card {
       background: white;
       border-radius: var(--radius-xl);
@@ -483,30 +416,25 @@
       flex-direction: column;
       height: 100%;
     }
-
     .product-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
     }
-
     .product-image {
       position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
       background: var(--gray-100);
     }
-
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s;
     }
-
     .product-card:hover .product-image img {
       transform: scale(1.03);
     }
-
     .product-badges {
       position: absolute;
       top: 0.75rem;
@@ -516,7 +444,6 @@
       gap: 0.4rem;
       z-index: 2;
     }
-
     .badge {
       padding: 0.25rem 0.7rem;
       border-radius: 999px;
@@ -524,41 +451,22 @@
       font-weight: 700;
       text-transform: uppercase;
     }
-
-    .badge-featured {
-      background: var(--accent);
-      color: white;
-    }
-
-    .badge-stock {
-      background: var(--success);
-      color: white;
-    }
-
-    .badge-delivery {
-      background: var(--primary);
-      color: white;
-    }
-
-    .badge-trending {
-      background: #e11d48;
-      color: white;
-    }
-
+    .badge-featured { background: var(--accent); color: white; }
+    .badge-stock { background: var(--success); color: white; }
+    .badge-delivery { background: var(--primary); color: white; }
+    .badge-trending { background: #e11d48; color: white; }
     .product-info {
       padding: 0.75rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-
     .product-brand {
       font-size: 0.75rem;
       color: var(--primary);
       font-weight: 700;
       text-transform: uppercase;
     }
-
     .product-name {
       font-size: 0.9rem;
       font-weight: 700;
@@ -569,14 +477,12 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
     .product-specs {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
       margin-bottom: 0.75rem;
     }
-
     .spec-tag {
       font-size: 0.65rem;
       background: var(--gray-200);
@@ -584,26 +490,22 @@
       border-radius: var(--radius);
       color: var(--gray-600);
     }
-
     .rating {
       display: flex;
       align-items: center;
       gap: 0.25rem;
       margin: 0.25rem 0 0.5rem;
     }
-
     .stars {
       display: flex;
       gap: 2px;
       color: #fbbf24;
       font-size: 0.7rem;
     }
-
     .rating-count {
       font-size: 0.65rem;
       color: var(--gray-600);
     }
-
     .product-footer {
       display: flex;
       align-items: center;
@@ -612,19 +514,16 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-
     .product-price {
       font-size: 1rem;
       font-weight: 800;
     }
-
     .old-price {
       font-size: 0.7rem;
       text-decoration: line-through;
       color: var(--gray-500);
       margin-left: 0.25rem;
     }
-
     .btn-whatsapp {
       background: #25d366;
       color: white;
@@ -639,83 +538,15 @@
       align-items: center;
       gap: 0.25rem;
     }
-
     .btn-whatsapp:hover {
       background: #128c7e;
     }
-
-    /* Brand grid */
-    .brands-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    @media (min-width: 480px) {
-      .brands-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (min-width: 768px) {
-      .brands-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .brands-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
-    }
-
-    .brand-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 0.5rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border: 1px solid transparent;
-    }
-
-    .brand-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-      border-color: var(--primary-light);
-    }
-
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--primary-light);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.6rem;
-      color: var(--primary);
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .brand-count {
-      font-size: 0.7rem;
-      color: var(--gray-500);
-      margin-top: 0.2rem;
-    }
-
-    /* WhatsApp float */
     .whatsapp-float {
       position: fixed;
       bottom: 1.25rem;
       right: 1rem;
       z-index: 999;
     }
-
     .whatsapp-btn {
       display: flex;
       align-items: center;
@@ -729,18 +560,14 @@
       box-shadow: var(--shadow-lg);
       transition: var(--transition);
     }
-
     .whatsapp-btn:hover {
       background: #128c7e;
       transform: scale(1.02);
     }
-
     .whatsapp-btn svg {
       width: 22px;
       height: 22px;
     }
-
-    /* Cookie Consent Banner */
     .cookie-banner {
       position: fixed;
       bottom: 0;
@@ -759,27 +586,22 @@
       transform: translateY(100%);
       transition: transform 0.3s ease;
     }
-
     .cookie-banner.show {
       transform: translateY(0);
     }
-
     .cookie-text {
       font-size: 0.85rem;
       color: var(--gray-700);
       flex: 1;
     }
-
     .cookie-text a {
       color: var(--primary);
       text-decoration: underline;
     }
-
     .cookie-buttons {
       display: flex;
       gap: 0.75rem;
     }
-
     .cookie-btn {
       padding: 0.5rem 1rem;
       border-radius: var(--radius);
@@ -789,51 +611,14 @@
       border: none;
       transition: var(--transition);
     }
-
-    .cookie-accept {
-      background: var(--primary);
-      color: white;
-    }
-
-    .cookie-accept:hover {
-      background: var(--secondary);
-    }
-
-    .cookie-decline {
-      background: var(--gray-200);
-      color: var(--gray-800);
-    }
-
-    .cookie-decline:hover {
-      background: var(--gray-300);
-    }
-
-    @media (max-width: 640px) {
-      .cookie-banner {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-      }
-
-      .cookie-buttons {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .cookie-btn {
-        flex: 1;
-        text-align: center;
-      }
-    }
-
-    /* Footer */
+    .cookie-accept { background: var(--primary); color: white; }
+    .cookie-decline { background: var(--gray-200); color: var(--gray-800); }
     .footer {
       background: var(--dark);
       color: white;
       padding: 2.5rem 1.25rem 1.25rem;
       margin-top: 2rem;
     }
-
     .footer-content {
       max-width: 1280px;
       margin: 0 auto;
@@ -841,56 +626,19 @@
       gap: 2rem;
       grid-template-columns: 1fr;
     }
-
     @media (min-width: 540px) {
-      .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .footer-content { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (min-width: 900px) {
-      .footer-content {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-      }
+      .footer-content { grid-template-columns: 2fr 1fr 1fr 1fr; }
     }
-
-    .footer-brand {
-      color: white;
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-desc {
-      color: white;
-      font-size: 0.85rem;
-    }
-
-    .footer-title {
-      color: white;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-links a {
-      color: white;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-      opacity: 0.9;
-    }
-
+    .footer-brand { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .footer-desc { font-size: 0.85rem; }
+    .footer-title { font-weight: 700; margin-bottom: 1rem; font-size: 1rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; font-size: 0.85rem; }
+    .footer-links a { color: white; cursor: pointer; }
+    .footer-links a:hover { text-decoration: underline; }
     .footer-bottom {
       max-width: 1280px;
       margin: 2rem auto 0;
@@ -898,51 +646,32 @@
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
       font-size: 0.75rem;
-      color: white;
     }
-
-    @media (max-width: 480px) {
-      .product-name {
-        font-size: 0.85rem;
-      }
-
-      .spec-tag {
-        font-size: 0.6rem;
-      }
-
-      .whatsapp-btn span {
-        display: inline-block;
-        font-size: 0.8rem;
-      }
-
-      .whatsapp-btn {
-        padding: 0.55rem 1rem;
-        gap: 0.4rem;
-      }
-
-      .brand-card {
-        padding: 1rem 0.25rem;
-      }
-
-      .brand-name {
-        font-size: 0.8rem;
-      }
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: var(--radius-lg);
+      color: var(--gray-600);
+    }
+    .filter-active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
-  <!-- Main Navigation -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo">
+      <div class="logo" id="resetFilterLink">
         <div class="logo-icon">📱</div>
         PhoneHub
-      </a>
+      </div>
       <div class="search-container">
-        <form class="search-form" action="phone.html" method="get">
-          <input class="search-input" type="text" name="q" placeholder="Search for phones, accessories..."
-            aria-label="Search">
+        <form class="search-form" id="searchForm">
+          <input class="search-input" type="text" id="searchInput" placeholder="Search for phones, accessories..." aria-label="Search">
           <button class="search-btn" type="submit">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="10" cy="10" r="7"></circle>
@@ -954,1531 +683,277 @@
     </div>
   </nav>
 
-  <!-- Main Wrapper: Sidebar + Content -->
   <div class="main-wrapper">
-    <!-- Side Navbar (vertical on all devices) -->
     <aside class="side-navbar">
       <div class="side-navbar-title">📌 Shop by department</div>
       <ul class="side-navbar-list">
-        <li><a href="phone.html?cat=phones"><span class="emoji">📱</span> Phones</a></li>
-        <li><a href="phone.html?cat=powerbanks"><span class="emoji">🔋</span> Power Banks</a></li>
-        <li><a href="phone.html?cat=earphones"><span class="emoji">🎧</span> Earphones</a></li>
-        <li><a href="phone.html?cat=earbuds"><span class="emoji">🦻</span> Earbuds</a></li>
-        <li><a href="phone.html?cat=chargers"><span class="emoji">⚡</span> Chargers</a></li>
-        <li><a href="phone.html?cat=cases"><span class="emoji">📲</span> Cases & Covers</a></li>
-        <li><a href="phone.html?cat=headphones"><span class="emoji">🎧</span> Headphones</a></li>
-        <li><a href="phone.html?cat=smartwatches"><span class="emoji">⌚</span> Smartwatches</a></li>
+        <li><a data-category="all"><span class="emoji">🏠</span> All Products</a></li>
+        <li><a data-category="phones"><span class="emoji">📱</span> Phones</a></li>
+        <li><a data-category="powerbanks"><span class="emoji">🔋</span> Power Banks</a></li>
+        <li><a data-category="earphones"><span class="emoji">🎧</span> Earphones</a></li>
+        <li><a data-category="earbuds"><span class="emoji">🦻</span> Earbuds</a></li>
+        <li><a data-category="chargers"><span class="emoji">⚡</span> Chargers</a></li>
+        <li><a data-category="cases"><span class="emoji">📲</span> Cases & Covers</a></li>
+        <li><a data-category="headphones"><span class="emoji">🎧</span> Headphones</a></li>
+        <li><a data-category="smartwatches"><span class="emoji">⌚</span> Smartwatches</a></li>
+        <li><a data-category="accessories"><span class="emoji">🎒</span> Accessories</a></li>
       </ul>
     </aside>
 
-    <!-- Main Content Area -->
     <div class="content-area">
-      <!-- Promotional Banner -->
       <div class="promo-banner">
         <div class="container">
           <div class="promo-content">
             <div class="promo-label">🔥 Limited Time Offer</div>
             <div class="promo-title">Up to 30% Off on Accessories!</div>
             <div class="promo-description">Power banks, earbuds, headphones & chargers – while stocks last.</div>
-            <div class="promo-timer">
-              <div class="timer-box">
-                <div class="timer-number">02</div>
-                <div class="timer-label">Days</div>
-              </div>
-              <div class="timer-box">
-                <div class="timer-number">12</div>
-                <div class="timer-label">Hours</div>
-              </div>
-              <div class="timer-box">
-                <div class="timer-number">45</div>
-                <div class="timer-label">Mins</div>
-              </div>
-              <div class="timer-box">
-                <div class="timer-number">30</div>
-                <div class="timer-label">Secs</div>
-              </div>
-            </div>
+            <div class="promo-timer"><div class="timer-box"><div class="timer-number">02</div><div class="timer-label">Days</div></div><div class="timer-box"><div class="timer-number">12</div><div class="timer-label">Hours</div></div><div class="timer-box"><div class="timer-number">45</div><div class="timer-label">Mins</div></div><div class="timer-box"><div class="timer-number">30</div><div class="timer-label">Secs</div></div></div>
           </div>
-          <a href="phone.html?cat=accessories" class="promo-button">Shop Now →</a>
+          <a href="#" class="promo-button">Shop Now →</a>
         </div>
       </div>
 
-      <!-- Category Section -->
       <section class="section">
         <div class="section-header">
           <h2 class="section-title">📂 Shop by Category</h2>
-          <a href="phone.html" class="view-all">All Categories →</a>
+          <a class="view-all" id="viewAllCategories">All Categories →</a>
         </div>
         <div class="category-grid">
-          <a href="phone.html?cat=phones" class="category-card">
-            <div class="category-icon">📱</div>
-            <div class="category-name">Phones</div>
-          </a>
-          <a href="phone.html?cat=powerbanks" class="category-card">
-            <div class="category-icon">🔋</div>
-            <div class="category-name">Power Banks</div>
-          </a>
-          <a href="phone.html?cat=earphones" class="category-card">
-            <div class="category-icon">🎧</div>
-            <div class="category-name">Earphones</div>
-          </a>
-          <a href="phone.html?cat=earbuds" class="category-card">
-            <div class="category-icon">🦻</div>
-            <div class="category-name">Earbuds</div>
-          </a>
-          <a href="phone.html?cat=chargers" class="category-card">
-            <div class="category-icon">⚡</div>
-            <div class="category-name">Chargers</div>
-          </a>
-          <a href="phone.html?cat=cases" class="category-card">
-            <div class="category-icon">📲</div>
-            <div class="category-name">Cases & Covers</div>
-          </a>
+          <div class="category-card" data-category="phones"><div class="category-icon">📱</div><div class="category-name">Phones</div></div>
+          <div class="category-card" data-category="powerbanks"><div class="category-icon">🔋</div><div class="category-name">Power Banks</div></div>
+          <div class="category-card" data-category="earphones"><div class="category-icon">🎧</div><div class="category-name">Earphones</div></div>
+          <div class="category-card" data-category="earbuds"><div class="category-icon">🦻</div><div class="category-name">Earbuds</div></div>
+          <div class="category-card" data-category="chargers"><div class="category-icon">⚡</div><div class="category-name">Chargers</div></div>
+          <div class="category-card" data-category="cases"><div class="category-icon">📲</div><div class="category-name">Cases & Covers</div></div>
         </div>
       </section>
 
-      <!-- Featured Phones -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">⭐ Featured Phones</h2>
-          <a href="phone.html" class="view-all">View All →</a>
-        </div>
-        <div class="product-grid">
-          <div class="product-card">
-            <a href="phone-details.html">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-1.jpg" alt="NovaTech X1 Pro"
-                  onerror="this.src='https://placehold.co/400x500?text=NovaTech+X1'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div>
-              <a href="phone-details.html">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">108MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
+      <!-- All product sections with all original products restored -->
+      <div id="productsContainer">
+        <!-- Featured Phones (4 products) -->
+        <section class="section">
+          <div class="section-header"><h2 class="section-title">⭐ Featured Phones</h2><a class="view-all" data-category="phones">View All →</a></div>
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech+X1" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">108MP Camera</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span class="spec-tag">50MP Camera</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Aurora Edge Ultra" data-brand="Aurora"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Aurora+Ultra" alt="Aurora Edge Ultra"></div></a><div class="product-info"><div class="product-brand">Aurora</div><h3 class="product-name">Aurora Edge Ultra</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span class="spec-tag">200MP Camera</span></div><div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Order+Aurora+Edge+Ultra" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="RogueFire GT" data-brand="RogueFire"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=RogueFire+GT" alt="RogueFire GT"></div></a><div class="product-info"><div class="product-brand">RogueFire</div><h3 class="product-name">RogueFire GT</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">64MP Camera</span></div><div class="product-footer"><div class="product-price">₦310,000</div><a href="https://wa.me/2348012345678?text=Order+RogueFire+GT" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
           </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-2.jpg" alt="Galaxy Prime S24"
-                  onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div>
-              <a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span
-                  class="spec-tag">50MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p3">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-3.jpg" alt="Aurora Edge Ultra"
-                  onerror="this.src='https://placehold.co/400x500?text=Aurora+Ultra'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Aurora</div>
-              <a href="phone-details.html?id=p3">
-                <h3 class="product-name">Aurora Edge Ultra</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span
-                  class="spec-tag">200MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦520,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p6">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-6.jpg" alt="RogueFire GT"
-                  onerror="this.src='https://placehold.co/400x500?text=RogueFire+GT'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">RogueFire</div>
-              <a href="phone-details.html?id=p6">
-                <h3 class="product-name">RogueFire GT</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">64MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦310,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card">
-            <a href="phone-details.html">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-1.jpg" alt="NovaTech X1 Pro"
-                  onerror="this.src='https://placehold.co/400x500?text=NovaTech+X1'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div>
-              <a href="phone-details.html">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">108MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-2.jpg" alt="Galaxy Prime S24"
-                  onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div>
-              <a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span
-                  class="spec-tag">50MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p3">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-3.jpg" alt="Aurora Edge Ultra"
-                  onerror="this.src='https://placehold.co/400x500?text=Aurora+Ultra'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Aurora</div>
-              <a href="phone-details.html?id=p3">
-                <h3 class="product-name">Aurora Edge Ultra</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span
-                  class="spec-tag">200MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦520,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p6">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-6.jpg" alt="RogueFire GT"
-                  onerror="this.src='https://placehold.co/400x500?text=RogueFire+GT'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">RogueFire</div>
-              <a href="phone-details.html?id=p6">
-                <h3 class="product-name">RogueFire GT</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">64MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦310,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card">
-            <a href="phone-details.html">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-1.jpg" alt="NovaTech X1 Pro"
-                  onerror="this.src='https://placehold.co/400x500?text=NovaTech+X1'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div>
-              <a href="phone-details.html">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">108MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-2.jpg" alt="Galaxy Prime S24"
-                  onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div>
-              <a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span
-                  class="spec-tag">50MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p3">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-3.jpg" alt="Aurora Edge Ultra"
-                  onerror="this.src='https://placehold.co/400x500?text=Aurora+Ultra'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Aurora</div>
-              <a href="phone-details.html?id=p3">
-                <h3 class="product-name">Aurora Edge Ultra</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span
-                  class="spec-tag">200MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦520,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p6">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-6.jpg" alt="RogueFire GT"
-                  onerror="this.src='https://placehold.co/400x500?text=RogueFire+GT'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">RogueFire</div>
-              <a href="phone-details.html?id=p6">
-                <h3 class="product-name">RogueFire GT</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">64MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦310,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card">
-            <a href="phone-details.html">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-1.jpg" alt="NovaTech X1 Pro"
-                  onerror="this.src='https://placehold.co/400x500?text=NovaTech+X1'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div>
-              <a href="phone-details.html">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">108MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-2.jpg" alt="Galaxy Prime S24"
-                  onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div>
-              <a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span
-                  class="spec-tag">50MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Galaxy%20Prime%20S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p3">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-3.jpg" alt="Aurora Edge Ultra"
-                  onerror="this.src='https://placehold.co/400x500?text=Aurora+Ultra'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Aurora</div>
-              <a href="phone-details.html?id=p3">
-                <h3 class="product-name">Aurora Edge Ultra</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span
-                  class="spec-tag">200MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦520,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20Aurora%20Edge%20Ultra"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <a href="phone-details.html?id=p6">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Featured</span><span
-                    class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span>
-                </div>
-                <img src="images/phone-6.jpg" alt="RogueFire GT"
-                  onerror="this.src='https://placehold.co/400x500?text=RogueFire+GT'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">RogueFire</div>
-              <a href="phone-details.html?id=p6">
-                <h3 class="product-name">RogueFire GT</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span
-                  class="spec-tag">64MP Camera</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦310,000</div><a
-                  href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20RogueFire%20GT"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
+        <!-- Duplicate featured section (original had repeated grids) -->
+        <section class="section">
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech+X1" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">108MP Camera</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span class="spec-tag">50MP Camera</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Aurora Edge Ultra" data-brand="Aurora"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Aurora+Ultra" alt="Aurora Edge Ultra"></div></a><div class="product-info"><div class="product-brand">Aurora</div><h3 class="product-name">Aurora Edge Ultra</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span class="spec-tag">200MP Camera</span></div><div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Order+Aurora+Edge+Ultra" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="RogueFire GT" data-brand="RogueFire"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=RogueFire+GT" alt="RogueFire GT"></div></a><div class="product-info"><div class="product-brand">RogueFire</div><h3 class="product-name">RogueFire GT</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">64MP Camera</span></div><div class="product-footer"><div class="product-price">₦310,000</div><a href="https://wa.me/2348012345678?text=Order+RogueFire+GT" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
 
-      <!-- Shop by Brand -->
-      <!-- <section class="section">
-        <div class="section-header"><h2 class="section-title">🏷️ Shop by Brand</h2></div>
-        <div class="brands-grid">
-          <a href="phone.html?brand=NovaTech" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">NovaTech</div><div class="brand-count">2 phones</div></a>
-          <a href="phone.html?brand=Galaxy" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Galaxy</div><div class="brand-count">1 phone</div></a>
-          <a href="phone.html?brand=Aurora" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">Aurora</div><div class="brand-count">1 phone</div></a>
-          <a href="phone.html?brand=LuxNote" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">LuxNote</div><div class="brand-count">1 phone</div></a>
-          <a href="phone.html?brand=PixelLeaf" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">PixelLeaf</div><div class="brand-count">1 phone</div></a>
-          <a href="phone.html?brand=RogueFire" class="brand-card"><div class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div><div class="brand-name">RogueFire</div><div class="brand-count">1 phone</div></a>
-        </div>
-      </section> -->
+        <!-- Third duplicate (original had 4 duplicate sections) -->
+        <section class="section">
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech+X1" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">108MP Camera</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span class="spec-tag">50MP Camera</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Aurora Edge Ultra" data-brand="Aurora"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Aurora+Ultra" alt="Aurora Edge Ultra"></div></a><div class="product-info"><div class="product-brand">Aurora</div><h3 class="product-name">Aurora Edge Ultra</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span class="spec-tag">200MP Camera</span></div><div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Order+Aurora+Edge+Ultra" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="RogueFire GT" data-brand="RogueFire"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=RogueFire+GT" alt="RogueFire GT"></div></a><div class="product-info"><div class="product-brand">RogueFire</div><h3 class="product-name">RogueFire GT</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">64MP Camera</span></div><div class="product-footer"><div class="product-price">₦310,000</div><a href="https://wa.me/2348012345678?text=Order+RogueFire+GT" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
 
-      <!-- Latest Arrivals -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">🆕 Latest Arrivals</h2><a href="phone.html" class="view-all">View All →</a>
-        </div>
-        <div class="product-grid">
-          <div class="product-card"><a href="phone-details.html?id=p1">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-1.jpg"
-                  alt="NovaTech X1 Pro" onerror="this.src='https://placehold.co/400x500?text=NovaTech'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div><a href="phone-details.html?id=p1">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
+        <!-- Fourth duplicate -->
+        <section class="section">
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech+X1" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">108MP Camera</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20NovaTech%20X1%20Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB RAM</span><span class="spec-tag">128GB</span><span class="spec-tag">50MP Camera</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Aurora Edge Ultra" data-brand="Aurora"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Aurora+Ultra" alt="Aurora Edge Ultra"></div></a><div class="product-info"><div class="product-brand">Aurora</div><h3 class="product-name">Aurora Edge Ultra</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">512GB</span><span class="spec-tag">200MP Camera</span></div><div class="product-footer"><div class="product-price">₦520,000</div><a href="https://wa.me/2348012345678?text=Order+Aurora+Edge+Ultra" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="RogueFire GT" data-brand="RogueFire"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Featured</span><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=RogueFire+GT" alt="RogueFire GT"></div></a><div class="product-info"><div class="product-brand">RogueFire</div><h3 class="product-name">RogueFire GT</h3><div class="product-specs"><span class="spec-tag">16GB RAM</span><span class="spec-tag">256GB</span><span class="spec-tag">64MP Camera</span></div><div class="product-footer"><div class="product-price">₦310,000</div><a href="https://wa.me/2348012345678?text=Order+RogueFire+GT" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
           </div>
-          <div class="product-card"><a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-2.jpg"
-                  alt="Galaxy Prime S24" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div><a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p5">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-5.jpg"
-                  alt="PixelLeaf 9 Pro" onerror="this.src='https://placehold.co/400x500?text=PixelLeaf+9'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">PixelLeaf</div><a href="phone-details.html?id=p5">
-                <h3 class="product-name">PixelLeaf 9 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦175,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p7">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-7.jpg"
-                  alt="CloudBook Air" onerror="this.src='https://placehold.co/400x500?text=CloudBook+Air'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">CloudBook</div><a href="phone-details.html?id=p7">
-                <h3 class="product-name">CloudBook Air</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card"><a href="phone-details.html?id=p1">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-1.jpg"
-                  alt="NovaTech X1 Pro" onerror="this.src='https://placehold.co/400x500?text=NovaTech'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div><a href="phone-details.html?id=p1">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-2.jpg"
-                  alt="Galaxy Prime S24" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div><a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p5">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-5.jpg"
-                  alt="PixelLeaf 9 Pro" onerror="this.src='https://placehold.co/400x500?text=PixelLeaf+9'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">PixelLeaf</div><a href="phone-details.html?id=p5">
-                <h3 class="product-name">PixelLeaf 9 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦175,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p7">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-7.jpg"
-                  alt="CloudBook Air" onerror="this.src='https://placehold.co/400x500?text=CloudBook+Air'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">CloudBook</div><a href="phone-details.html?id=p7">
-                <h3 class="product-name">CloudBook Air</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card"><a href="phone-details.html?id=p1">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-1.jpg"
-                  alt="NovaTech X1 Pro" onerror="this.src='https://placehold.co/400x500?text=NovaTech'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">NovaTech</div><a href="phone-details.html?id=p1">
-                <h3 class="product-name">NovaTech X1 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦245,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p2">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-2.jpg"
-                  alt="Galaxy Prime S24" onerror="this.src='https://placehold.co/400x500?text=Galaxy+S24'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">Galaxy</div><a href="phone-details.html?id=p2">
-                <h3 class="product-name">Galaxy Prime S24</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p5">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-5.jpg"
-                  alt="PixelLeaf 9 Pro" onerror="this.src='https://placehold.co/400x500?text=PixelLeaf+9'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">PixelLeaf</div><a href="phone-details.html?id=p5">
-                <h3 class="product-name">PixelLeaf 9 Pro</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦175,000</div><a
-                  href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank"
-                  class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card"><a href="phone-details.html?id=p7">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span><span
-                    class="badge badge-delivery">Pay on Delivery</span></div><img src="images/phone-7.jpg"
-                  alt="CloudBook Air" onerror="this.src='https://placehold.co/400x500?text=CloudBook+Air'">
-              </div>
-            </a>
-            <div class="product-info">
-              <div class="product-brand">CloudBook</div><a href="phone-details.html?id=p7">
-                <h3 class="product-name">CloudBook Air</h3>
-              </a>
-              <div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div>
-              <div class="product-footer">
-                <div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air"
-                  target="_blank" class="btn-whatsapp">Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Accessories & Gadgets -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">📱 Accessories & Gadgets</h2><a href="phone.html?cat=accessories"
-            class="view-all">Shop All →</a>
-        </div>
-        <div class="product-grid">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">PowerHub</div>
-                <h3 class="product-name">Ultra Power Bank 20000mAh</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(342)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast
-                    Charge</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Hot</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">AirSound</div>
-                <h3 class="product-name">AirSound Pro TWS Earbuds</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(567)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span
-                    class="spec-tag">40hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Best Seller</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">BassBoom</div>
-                <h3 class="product-name">BassBoom Wireless Headphones</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(892)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SlimFit</div>
-                <h3 class="product-name">SlimFit 10000mAh Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(213)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">10000mAh</span><span
-                    class="spec-tag">Lightweight</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-        <div class="product-grid" style="margin-top: 1.5rem;">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SportFlex</div>
-                <h3 class="product-name">SportFlex Wireless Earhooks</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(124)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">VoltCore</div>
-                <h3 class="product-name">GaN 65W Fast Charger + Cable</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(408)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Limited</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">LuxePod</div>
-                <h3 class="product-name">LuxePod Ceramic Edition TWS</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(287)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless
-                    Charging</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">MagSafe</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">MagJuice</div>
-                <h3 class="product-name">MagJuice Magnetic Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(156)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">PowerHub</div>
-                <h3 class="product-name">Ultra Power Bank 20000mAh</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(342)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast
-                    Charge</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Hot</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">AirSound</div>
-                <h3 class="product-name">AirSound Pro TWS Earbuds</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(567)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span
-                    class="spec-tag">40hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Best Seller</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">BassBoom</div>
-                <h3 class="product-name">BassBoom Wireless Headphones</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(892)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SlimFit</div>
-                <h3 class="product-name">SlimFit 10000mAh Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(213)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">10000mAh</span><span
-                    class="spec-tag">Lightweight</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-        <div class="product-grid" style="margin-top: 1.5rem;">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SportFlex</div>
-                <h3 class="product-name">SportFlex Wireless Earhooks</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(124)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">VoltCore</div>
-                <h3 class="product-name">GaN 65W Fast Charger + Cable</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(408)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Limited</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">LuxePod</div>
-                <h3 class="product-name">LuxePod Ceramic Edition TWS</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(287)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless
-                    Charging</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">MagSafe</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">MagJuice</div>
-                <h3 class="product-name">MagJuice Magnetic Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(156)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">PowerHub</div>
-                <h3 class="product-name">Ultra Power Bank 20000mAh</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(342)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast
-                    Charge</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Hot</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">AirSound</div>
-                <h3 class="product-name">AirSound Pro TWS Earbuds</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(567)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span
-                    class="spec-tag">40hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Best Seller</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">BassBoom</div>
-                <h3 class="product-name">BassBoom Wireless Headphones</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(892)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SlimFit</div>
-                <h3 class="product-name">SlimFit 10000mAh Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(213)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">10000mAh</span><span
-                    class="spec-tag">Lightweight</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-        <div class="product-grid" style="margin-top: 1.5rem;">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SportFlex</div>
-                <h3 class="product-name">SportFlex Wireless Earhooks</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(124)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">VoltCore</div>
-                <h3 class="product-name">GaN 65W Fast Charger + Cable</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(408)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Limited</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">LuxePod</div>
-                <h3 class="product-name">LuxePod Ceramic Edition TWS</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(287)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless
-                    Charging</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">MagSafe</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">MagJuice</div>
-                <h3 class="product-name">MagJuice Magnetic Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(156)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="product-grid">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">PowerHub</div>
-                <h3 class="product-name">Ultra Power Bank 20000mAh</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(342)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast
-                    Charge</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Hot</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">AirSound</div>
-                <h3 class="product-name">AirSound Pro TWS Earbuds</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(567)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span
-                    class="spec-tag">40hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Best Seller</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">BassBoom</div>
-                <h3 class="product-name">BassBoom Wireless Headphones</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(892)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SlimFit</div>
-                <h3 class="product-name">SlimFit 10000mAh Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(213)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">10000mAh</span><span
-                    class="spec-tag">Lightweight</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-        <div class="product-grid" style="margin-top: 1.5rem;">
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">Trending</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">SportFlex</div>
-                <h3 class="product-name">SportFlex Wireless Earhooks</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(124)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">VoltCore</div>
-                <h3 class="product-name">GaN 65W Fast Charger + Cable</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(408)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-featured">Limited</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">LuxePod</div>
-                <h3 class="product-name">LuxePod Ceramic Edition TWS</h3>
-                <div class="rating">
-                  <div class="stars">★★★★★</div><span class="rating-count">(287)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless
-                    Charging</span></div>
-                <div class="product-footer">
-                  <div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-          <div class="product-card"><a href="">
-              <div class="product-image">
-                <div class="product-badges"><span class="badge badge-trending">MagSafe</span><span
-                    class="badge badge-stock">In Stock</span></div><img
-                  src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank">
-              </div>
-              <div class="product-info">
-                <div class="product-brand">MagJuice</div>
-                <h3 class="product-name">MagJuice Magnetic Power Bank</h3>
-                <div class="rating">
-                  <div class="stars">★★★★☆</div><span class="rating-count">(156)</span>
-                </div>
-                <div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span>
-                </div>
-                <div class="product-footer">
-                  <div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a
-                    href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank"
-                    class="btn-whatsapp">Order</a>
-                </div>
-              </div>
-            </a></div>
-        </div>
-      </section>
+        <!-- Latest Arrivals (phones) original -->
+        <section class="section">
+          <div class="section-header"><h2 class="section-title">🆕 Latest Arrivals</h2><a class="view-all" data-category="phones">View All →</a></div>
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="PixelLeaf 9 Pro" data-brand="PixelLeaf"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=PixelLeaf+9" alt="PixelLeaf 9 Pro"></div></a><div class="product-info"><div class="product-brand">PixelLeaf</div><h3 class="product-name">PixelLeaf 9 Pro</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦175,000</div><a href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="CloudBook Air" data-brand="CloudBook"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=CloudBook+Air" alt="CloudBook Air"></div></a><div class="product-info"><div class="product-brand">CloudBook</div><h3 class="product-name">CloudBook Air</h3><div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
+
+        <!-- Duplicate Latest Arrivals sections (original had 3 duplicates) -->
+        <section class="section">
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="PixelLeaf 9 Pro" data-brand="PixelLeaf"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=PixelLeaf+9" alt="PixelLeaf 9 Pro"></div></a><div class="product-info"><div class="product-brand">PixelLeaf</div><h3 class="product-name">PixelLeaf 9 Pro</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦175,000</div><a href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="CloudBook Air" data-brand="CloudBook"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=CloudBook+Air" alt="CloudBook Air"></div></a><div class="product-info"><div class="product-brand">CloudBook</div><h3 class="product-name">CloudBook Air</h3><div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="product-grid">
+            <div class="product-card" data-category="phones" data-name="NovaTech X1 Pro" data-brand="NovaTech"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=NovaTech" alt="NovaTech X1 Pro"></div></a><div class="product-info"><div class="product-brand">NovaTech</div><h3 class="product-name">NovaTech X1 Pro</h3><div class="product-specs"><span class="spec-tag">12GB</span><span class="spec-tag">256GB</span></div><div class="product-footer"><div class="product-price">₦245,000</div><a href="https://wa.me/2348012345678?text=Order+NovaTech+X1+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="Galaxy Prime S24" data-brand="Galaxy"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=Galaxy+S24" alt="Galaxy Prime S24"></div></a><div class="product-info"><div class="product-brand">Galaxy</div><h3 class="product-name">Galaxy Prime S24</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦389,000</div><a href="https://wa.me/2348012345678?text=Order+Galaxy+S24" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="PixelLeaf 9 Pro" data-brand="PixelLeaf"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=PixelLeaf+9" alt="PixelLeaf 9 Pro"></div></a><div class="product-info"><div class="product-brand">PixelLeaf</div><h3 class="product-name">PixelLeaf 9 Pro</h3><div class="product-specs"><span class="spec-tag">8GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦175,000</div><a href="https://wa.me/2348012345678?text=Order+PixelLeaf+9+Pro" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="phones" data-name="CloudBook Air" data-brand="CloudBook"><a href="#"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span><span class="badge badge-delivery">Pay on Delivery</span></div><img src="https://placehold.co/400x500?text=CloudBook+Air" alt="CloudBook Air"></div></a><div class="product-info"><div class="product-brand">CloudBook</div><h3 class="product-name">CloudBook Air</h3><div class="product-specs"><span class="spec-tag">6GB</span><span class="spec-tag">128GB</span></div><div class="product-footer"><div class="product-price">₦145,000</div><a href="https://wa.me/2348012345678?text=Order+CloudBook+Air" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
+
+        <!-- Accessories & Gadgets (original had 3 duplicate sections, each with 8 products) -->
+        <!-- Accessories block 1 -->
+        <section class="section">
+          <div class="section-header"><h2 class="section-title">📱 Accessories & Gadgets</h2><a class="view-all" data-category="accessories">Shop All →</a></div>
+          <div class="product-grid">
+            <div class="product-card" data-category="powerbanks" data-name="Ultra Power Bank 20000mAh" data-brand="PowerHub"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank"></div><div class="product-info"><div class="product-brand">PowerHub</div><h3 class="product-name">Ultra Power Bank 20000mAh</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(342)</span></div><div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast Charge</span></div><div class="product-footer"><div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="earbuds" data-name="AirSound Pro TWS Earbuds" data-brand="AirSound"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Hot</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds"></div><div class="product-info"><div class="product-brand">AirSound</div><h3 class="product-name">AirSound Pro TWS Earbuds</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(567)</span></div><div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span class="spec-tag">40hrs</span></div><div class="product-footer"><div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="headphones" data-name="BassBoom Wireless Headphones" data-brand="BassBoom"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Best Seller</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones"></div><div class="product-info"><div class="product-brand">BassBoom</div><h3 class="product-name">BassBoom Wireless Headphones</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(892)</span></div><div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div><div class="product-footer"><div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="powerbanks" data-name="SlimFit 10000mAh Power Bank" data-brand="SlimFit"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank"></div><div class="product-info"><div class="product-brand">SlimFit</div><h3 class="product-name">SlimFit 10000mAh Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(213)</span></div><div class="product-specs"><span class="spec-tag">10000mAh</span><span class="spec-tag">Lightweight</span></div><div class="product-footer"><div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+          <div class="product-grid" style="margin-top: 1.5rem;">
+            <div class="product-card" data-category="earphones" data-name="SportFlex Wireless Earhooks" data-brand="SportFlex"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks"></div><div class="product-info"><div class="product-brand">SportFlex</div><h3 class="product-name">SportFlex Wireless Earhooks</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(124)</span></div><div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span></div><div class="product-footer"><div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="chargers" data-name="GaN 65W Fast Charger + Cable" data-brand="VoltCore"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger"></div><div class="product-info"><div class="product-brand">VoltCore</div><h3 class="product-name">GaN 65W Fast Charger + Cable</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(408)</span></div><div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span></div><div class="product-footer"><div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="earbuds" data-name="LuxePod Ceramic Edition TWS" data-brand="LuxePod"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Limited</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds"></div><div class="product-info"><div class="product-brand">LuxePod</div><h3 class="product-name">LuxePod Ceramic Edition TWS</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(287)</span></div><div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless Charging</span></div><div class="product-footer"><div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+            <div class="product-card" data-category="powerbanks" data-name="MagJuice Magnetic Power Bank" data-brand="MagJuice"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">MagSafe</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank"></div><div class="product-info"><div class="product-brand">MagJuice</div><h3 class="product-name">MagJuice Magnetic Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(156)</span></div><div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span></div><div class="product-footer"><div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div>
+          </div>
+        </section>
+
+        <!-- Duplicate accessories sections (original had many repeats) -->
+        <section class="section"><div class="product-grid"><div class="product-card" data-category="powerbanks" data-name="Ultra Power Bank 20000mAh" data-brand="PowerHub"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank"></div><div class="product-info"><div class="product-brand">PowerHub</div><h3 class="product-name">Ultra Power Bank 20000mAh</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(342)</span></div><div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast Charge</span></div><div class="product-footer"><div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="earbuds" data-name="AirSound Pro TWS Earbuds" data-brand="AirSound"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Hot</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds"></div><div class="product-info"><div class="product-brand">AirSound</div><h3 class="product-name">AirSound Pro TWS Earbuds</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(567)</span></div><div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span class="spec-tag">40hrs</span></div><div class="product-footer"><div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="headphones" data-name="BassBoom Wireless Headphones" data-brand="BassBoom"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Best Seller</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones"></div><div class="product-info"><div class="product-brand">BassBoom</div><h3 class="product-name">BassBoom Wireless Headphones</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(892)</span></div><div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div><div class="product-footer"><div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="powerbanks" data-name="SlimFit 10000mAh Power Bank" data-brand="SlimFit"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank"></div><div class="product-info"><div class="product-brand">SlimFit</div><h3 class="product-name">SlimFit 10000mAh Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(213)</span></div><div class="product-specs"><span class="spec-tag">10000mAh</span><span class="spec-tag">Lightweight</span></div><div class="product-footer"><div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div></div><div class="product-grid" style="margin-top:1.5rem;"><div class="product-card" data-category="earphones" data-name="SportFlex Wireless Earhooks" data-brand="SportFlex"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks"></div><div class="product-info"><div class="product-brand">SportFlex</div><h3 class="product-name">SportFlex Wireless Earhooks</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(124)</span></div><div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span></div><div class="product-footer"><div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="chargers" data-name="GaN 65W Fast Charger + Cable" data-brand="VoltCore"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger"></div><div class="product-info"><div class="product-brand">VoltCore</div><h3 class="product-name">GaN 65W Fast Charger + Cable</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(408)</span></div><div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span></div><div class="product-footer"><div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="earbuds" data-name="LuxePod Ceramic Edition TWS" data-brand="LuxePod"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Limited</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds"></div><div class="product-info"><div class="product-brand">LuxePod</div><h3 class="product-name">LuxePod Ceramic Edition TWS</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(287)</span></div><div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless Charging</span></div><div class="product-footer"><div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="powerbanks" data-name="MagJuice Magnetic Power Bank" data-brand="MagJuice"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">MagSafe</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank"></div><div class="product-info"><div class="product-brand">MagJuice</div><h3 class="product-name">MagJuice Magnetic Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(156)</span></div><div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span></div><div class="product-footer"><div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div></div></section>
+        <!-- Third accessories duplicate -->
+        <section class="section"><div class="product-grid"><div class="product-card" data-category="powerbanks" data-name="Ultra Power Bank 20000mAh" data-brand="PowerHub"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Power+Bank+20000mAh" alt="Power Bank"></div><div class="product-info"><div class="product-brand">PowerHub</div><h3 class="product-name">Ultra Power Bank 20000mAh</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(342)</span></div><div class="product-specs"><span class="spec-tag">20000mAh</span><span class="spec-tag">Fast Charge</span></div><div class="product-footer"><div class="product-price">₦25,000 <span class="old-price">₦35,000</span></div><a href="https://wa.me/2348012345678?text=Order+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="earbuds" data-name="AirSound Pro TWS Earbuds" data-brand="AirSound"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Hot</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=TWS+Earbuds+Pro" alt="Earbuds"></div><div class="product-info"><div class="product-brand">AirSound</div><h3 class="product-name">AirSound Pro TWS Earbuds</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(567)</span></div><div class="product-specs"><span class="spec-tag">Noise Cancelling</span><span class="spec-tag">40hrs</span></div><div class="product-footer"><div class="product-price">₦18,500 <span class="old-price">₦28,000</span></div><a href="https://wa.me/2348012345678?text=Order+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="headphones" data-name="BassBoom Wireless Headphones" data-brand="BassBoom"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Best Seller</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Wireless+Headphones" alt="Headphones"></div><div class="product-info"><div class="product-brand">BassBoom</div><h3 class="product-name">BassBoom Wireless Headphones</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(892)</span></div><div class="product-specs"><span class="spec-tag">Hi-Fi</span><span class="spec-tag">30hrs</span></div><div class="product-footer"><div class="product-price">₦45,000 <span class="old-price">₦65,000</span></div><a href="https://wa.me/2348012345678?text=Order+Headphones" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="powerbanks" data-name="SlimFit 10000mAh Power Bank" data-brand="SlimFit"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Slim+Power+Bank" alt="Slim Power Bank"></div><div class="product-info"><div class="product-brand">SlimFit</div><h3 class="product-name">SlimFit 10000mAh Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(213)</span></div><div class="product-specs"><span class="spec-tag">10000mAh</span><span class="spec-tag">Lightweight</span></div><div class="product-footer"><div class="product-price">₦12,500 <span class="old-price">₦18,000</span></div><a href="https://wa.me/2348012345678?text=Order+Slim+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div></div><div class="product-grid" style="margin-top:1.5rem;"><div class="product-card" data-category="earphones" data-name="SportFlex Wireless Earhooks" data-brand="SportFlex"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">Trending</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Sport+Earhooks" alt="Sport Earhooks"></div><div class="product-info"><div class="product-brand">SportFlex</div><h3 class="product-name">SportFlex Wireless Earhooks</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(124)</span></div><div class="product-specs"><span class="spec-tag">Sweatproof</span><span class="spec-tag">20hrs</span></div><div class="product-footer"><div class="product-price">₦14,900 <span class="old-price">₦22,000</span></div><a href="https://wa.me/2348012345678?text=Order+Sport+Earhooks" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="chargers" data-name="GaN 65W Fast Charger + Cable" data-brand="VoltCore"><div class="product-image"><div class="product-badges"><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=65W+GaN+Charger" alt="Charger"></div><div class="product-info"><div class="product-brand">VoltCore</div><h3 class="product-name">GaN 65W Fast Charger + Cable</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(408)</span></div><div class="product-specs"><span class="spec-tag">65W PD</span><span class="spec-tag">3 Ports</span></div><div class="product-footer"><div class="product-price">₦22,000 <span class="old-price">₦32,000</span></div><a href="https://wa.me/2348012345678?text=Order+Charger" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="earbuds" data-name="LuxePod Ceramic Edition TWS" data-brand="LuxePod"><div class="product-image"><div class="product-badges"><span class="badge badge-featured">Limited</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Ceramic+Earbuds" alt="Ceramic Earbuds"></div><div class="product-info"><div class="product-brand">LuxePod</div><h3 class="product-name">LuxePod Ceramic Edition TWS</h3><div class="rating"><div class="stars">★★★★★</div><span class="rating-count">(287)</span></div><div class="product-specs"><span class="spec-tag">Hi-Res</span><span class="spec-tag">Wireless Charging</span></div><div class="product-footer"><div class="product-price">₦38,000 <span class="old-price">₦55,000</span></div><a href="https://wa.me/2348012345678?text=Order+Ceramic+Earbuds" target="_blank" class="btn-whatsapp">Order</a></div></div></div><div class="product-card" data-category="powerbanks" data-name="MagJuice Magnetic Power Bank" data-brand="MagJuice"><div class="product-image"><div class="product-badges"><span class="badge badge-trending">MagSafe</span><span class="badge badge-stock">In Stock</span></div><img src="https://placehold.co/400x500?text=Magnetic+Power+Bank" alt="Magnetic Power Bank"></div><div class="product-info"><div class="product-brand">MagJuice</div><h3 class="product-name">MagJuice Magnetic Power Bank</h3><div class="rating"><div class="stars">★★★★☆</div><span class="rating-count">(156)</span></div><div class="product-specs"><span class="spec-tag">5000mAh</span><span class="spec-tag">Magnetic</span></div><div class="product-footer"><div class="product-price">₦29,000 <span class="old-price">₦42,000</span></div><a href="https://wa.me/2348012345678?text=Order+Magnetic+Power+Bank" target="_blank" class="btn-whatsapp">Order</a></div></div></div></div></section>
+      </div>
+      <div id="noResultsMsg" style="display: none;" class="no-results">No products found.</div>
     </div>
   </div>
 
-  <!-- Cookie Consent Banner -->
   <div id="cookieBanner" class="cookie-banner">
-    <div class="cookie-text">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta consectetur, est perspiciatis corporis impedit
-      ratione, doloribus ex voluptatum autem tempora veniam! Nemo eligendi sint ab, temporibus voluptate corrupti ad
-      provident. Minima dignissimos ut, officiis tempora provident aliquid odit et nisi vitae commodi sint excepturi
-      quia voluptate, adipisci distinctio nostrum temporibus.
-      🍪 We use cookies to improve your experience. By using our site, you accept our
-      <a href="#">cookie policy</a>.
-    </div>
-    <div class="cookie-buttons">
-      <button id="acceptCookies" class="cookie-btn cookie-accept">Accept</button>
-      <button id="declineCookies" class="cookie-btn cookie-decline">Decline</button>
-    </div>
+    <div class="cookie-text">🍪 We use cookies to improve your experience. By using our site, you accept our <a href="#">cookie policy</a>.</div>
+    <div class="cookie-buttons"><button id="acceptCookies" class="cookie-btn cookie-accept">Accept</button><button id="declineCookies" class="cookie-btn cookie-decline">Decline</button></div>
   </div>
 
-  <!-- WhatsApp Floating Button -->
   <div class="whatsapp-float">
-    <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20a%20phone" target="_blank"
-      class="whatsapp-btn">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-      </svg>
-      <span>Order on WhatsApp</span>
-    </a>
+    <a href="https://wa.me/2348012345678?text=Hello%2C%20I%20want%20to%20order%20a%20phone" target="_blank" class="whatsapp-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Order on WhatsApp</span></a>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <div>
-        <div class="footer-brand">PhoneHub</div>
-        <p class="footer-desc">Your trusted destination for premium smartphones in Nigeria. Pay on delivery available
-          nationwide.</p>
-      </div>
-      <div>
-        <h4 class="footer-title">Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="phone.html">Phones</a></li>
-          <li><a href="phone.html?cat=powerbanks">Power Banks</a></li>
-          <li><a href="phone.html?cat=earbuds">Earbuds</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer-title">Contact</h4>
-        <ul class="footer-links">
-          <li>WhatsApp: +234 801 234 5678</li>
-          <li>Email: info@phonehub.ng</li>
-          <li>Lagos, Nigeria</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer-title">Services</h4>
-        <ul class="footer-links">
-          <li>Pay on Delivery</li>
-          <li>Free Shipping</li>
-          <li>24/7 Support</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 PhoneHub. All rights reserved.</p>
-    </div>
+    <div class="footer-content"><div><div class="footer-brand">PhoneHub</div><p class="footer-desc">Your trusted destination for premium smartphones in Nigeria.</p></div><div><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a id="resetFooter">Home</a></li><li><a data-category="phones">Phones</a></li><li><a data-category="powerbanks">Power Banks</a></li><li><a data-category="earbuds">Earbuds</a></li></ul></div><div><h4 class="footer-title">Contact</h4><ul class="footer-links"><li>WhatsApp: +234 801 234 5678</li><li>Email: info@phonehub.ng</li></ul></div><div><h4 class="footer-title">Services</h4><ul class="footer-links"><li>Pay on Delivery</li><li>Free Shipping</li></ul></div></div>
+    <div class="footer-bottom"><p>&copy; 2025 PhoneHub.</p></div>
   </footer>
 
   <script>
-    // Cookie consent logic
+    // Filtering logic - maintains responsive grid automatically because hidden items are removed from layout
+    const allProductCards = Array.from(document.querySelectorAll('.product-card'));
+    const noResultsDiv = document.getElementById('noResultsMsg');
+    const sections = document.querySelectorAll('#productsContainer .section');
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
+    function filterProducts() {
+      let anyVisible = false;
+      allProductCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const brand = (card.getAttribute('data-brand') || '').toLowerCase();
+        const searchMatch = currentSearchTerm === '' || name.includes(currentSearchTerm) || brand.includes(currentSearchTerm);
+        const categoryMatch = currentCategory === 'all' || category === currentCategory;
+        if (categoryMatch && searchMatch) {
+          card.style.display = '';
+          anyVisible = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      sections.forEach(section => {
+        const visibleCards = Array.from(section.querySelectorAll('.product-card')).some(card => card.style.display !== 'none');
+        section.style.display = visibleCards ? '' : 'none';
+      });
+      noResultsDiv.style.display = anyVisible ? 'none' : 'block';
+    }
+
+    function setActiveFilter(category) {
+      document.querySelectorAll('.side-navbar-list li a, .category-card, .view-all[data-category], .footer-links a[data-category]').forEach(el => {
+        if (el.getAttribute && el.getAttribute('data-category') === category && category !== 'all') {
+          el.classList.add('filter-active');
+        } else {
+          el.classList.remove('filter-active');
+        }
+      });
+      const allLink = document.querySelector('.side-navbar-list li a[data-category="all"]');
+      if (category === 'all' && allLink) allLink.classList.add('filter-active');
+      else if (allLink) allLink.classList.remove('filter-active');
+    }
+
+    function applyFilter(category) {
+      currentCategory = category;
+      currentSearchTerm = '';
+      document.getElementById('searchInput').value = '';
+      filterProducts();
+      setActiveFilter(category);
+    }
+
+    function applySearch(term) {
+      currentSearchTerm = term.toLowerCase().trim();
+      filterProducts();
+    }
+
+    // Event listeners
+    document.querySelectorAll('.side-navbar-list li a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = link.getAttribute('data-category');
+        if (cat) applyFilter(cat);
+      });
+    });
+    document.querySelectorAll('.category-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const cat = card.getAttribute('data-category');
+        if (cat) applyFilter(cat);
+      });
+    });
+    document.querySelectorAll('.view-all[data-category]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = link.getAttribute('data-category');
+        if (cat) applyFilter(cat);
+      });
+    });
+    document.querySelectorAll('.footer-links a[data-category]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = link.getAttribute('data-category');
+        if (cat) applyFilter(cat);
+      });
+    });
+    const resetLinks = document.querySelectorAll('#resetFilterLink, #resetFooter');
+    resetLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        applyFilter('all');
+      });
+    });
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      applySearch(searchInput.value);
+    });
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value === '') applySearch('');
+    });
+
+    applyFilter('all');
+
+    // Cookie consent
     document.addEventListener('DOMContentLoaded', function () {
       const cookieBanner = document.getElementById('cookieBanner');
       const acceptBtn = document.getElementById('acceptCookies');
       const declineBtn = document.getElementById('declineCookies');
-
-      // Check if user has already chosen
       const cookieChoice = localStorage.getItem('cookieConsent');
-      if (cookieChoice === null) {
-        // Show banner with animation
-        setTimeout(() => {
-          cookieBanner.classList.add('show');
-        }, 500);
-      }
-
-      function handleAccept() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        cookieBanner.classList.remove('show');
-        // Optionally, you can enable analytics/tracking here
-        console.log('Cookies accepted');
-      }
-
-      function handleDecline() {
-        localStorage.setItem('cookieConsent', 'declined');
-        cookieBanner.classList.remove('show');
-        // Optionally, disable non-essential cookies
-        console.log('Cookies declined');
-      }
-
-      acceptBtn.addEventListener('click', handleAccept);
-      declineBtn.addEventListener('click', handleDecline);
+      if (cookieChoice === null) setTimeout(() => cookieBanner.classList.add('show'), 500);
+      acceptBtn.addEventListener('click', () => { localStorage.setItem('cookieConsent', 'accepted'); cookieBanner.classList.remove('show'); });
+      declineBtn.addEventListener('click', () => { localStorage.setItem('cookieConsent', 'declined'); cookieBanner.classList.remove('show'); });
     });
   </script>
 </body>
