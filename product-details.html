@@ -43,7 +43,6 @@
       line-height: 1.6;
     }
 
-    /* Navigation */
     .navbar {
       background: var(--white);
       box-shadow: var(--shadow);
@@ -164,7 +163,6 @@
       }
     }
 
-    /* Main Content */
     .main-container {
       max-width: 1280px;
       margin: 2rem auto;
@@ -205,7 +203,6 @@
       }
     }
 
-    /* Product Images */
     .product-gallery {
       position: relative;
     }
@@ -261,7 +258,6 @@
       color: white;
     }
 
-    /* Product Info */
     .product-brand {
       font-size: 0.85rem;
       color: var(--primary);
@@ -308,7 +304,7 @@
     .current-price {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--danger);
+      color: #dc2626;
     }
 
     .old-price {
@@ -319,7 +315,7 @@
     }
 
     .discount {
-      background: var(--danger);
+      background: #dc2626;
       color: white;
       padding: 0.25rem 0.75rem;
       border-radius: 999px;
@@ -413,7 +409,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    /* Related Products - Mobile: 2 in a row */
     .related-section {
       margin-top: 3rem;
     }
@@ -431,7 +426,6 @@
       gap: 1.5rem;
     }
 
-    /* Mobile: 2 in a row */
     @media (max-width: 768px) {
       .related-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -439,7 +433,6 @@
       }
     }
 
-    /* Tablet: 3 in a row */
     @media (min-width: 769px) and (max-width: 1024px) {
       .related-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -493,11 +486,17 @@
     .related-price {
       font-size: 0.9rem;
       font-weight: 800;
-      color: var(--danger);
+      color: #dc2626;
       margin-top: 0.5rem;
     }
 
-    /* Loading & Error States */
+    .related-old-price {
+      font-size: 0.7rem;
+      text-decoration: line-through;
+      color: var(--gray-500);
+      margin-right: 0.5rem;
+    }
+
     .loading {
       text-align: center;
       padding: 4rem;
@@ -525,11 +524,10 @@
     }
 
     .error h2 {
-      color: var(--danger);
+      color: #dc2626;
       margin-bottom: 1rem;
     }
 
-    /* Footer */
     .footer {
       background: var(--dark);
       color: white;
@@ -543,7 +541,6 @@
       text-align: center;
     }
 
-    /* Search Results Dropdown */
     .search-results {
       position: absolute;
       top: 100%;
@@ -601,7 +598,7 @@
 
     .search-result-price {
       font-weight: 700;
-      color: var(--danger);
+      color: #dc2626;
       font-size: 0.85rem;
     }
   </style>
@@ -634,7 +631,6 @@
 
   <div class="main-container">
     <div id="productContent">
-      <!-- Loading state -->
       <div class="loading" id="loadingState">
         <div class="spinner"></div>
         <p>Loading product details...</p>
@@ -649,16 +645,36 @@
   </footer>
 
   <script>
-    // Get product ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
 
     let currentProduct = null;
     let allProducts = [];
 
-    // Load product data
+    // Helper to extract clean price from a possibly concatenated string
+    function extractCleanPrice(priceStr) {
+      if (!priceStr) return '';
+      // Split by spaces or look for two ₦ symbols
+      const parts = priceStr.split(/\s+/);
+      // If we have multiple parts, the first is usually current price
+      let current = parts[0];
+      // Remove extra spaces and return
+      return current.trim();
+    }
+
+    function extractOldPrice(priceStr, oldPriceFromField) {
+      if (oldPriceFromField && oldPriceFromField.trim()) {
+        return oldPriceFromField.trim();
+      }
+      if (!priceStr) return '';
+      const parts = priceStr.split(/\s+/);
+      if (parts.length >= 2) {
+        return parts[1].trim();
+      }
+      return '';
+    }
+
     function loadProductData() {
-      // First try to get from sessionStorage
       if (productId) {
         const storedProduct = sessionStorage.getItem(`product_${productId}`);
         if (storedProduct) {
@@ -669,7 +685,6 @@
         }
       }
 
-      // If not in sessionStorage, try to get from localStorage or use sample data
       const storedProducts = localStorage.getItem('allProducts');
       if (storedProducts && productId) {
         allProducts = JSON.parse(storedProducts);
@@ -681,15 +696,6 @@
         }
       }
 
-      // Fallback: Use the product data that might have been passed
-      if (window.history.state && window.history.state.product) {
-        currentProduct = window.history.state.product;
-        renderProductDetails();
-        loadRelatedProducts();
-        return;
-      }
-
-      // If no data found, show error
       showError();
     }
 
@@ -699,22 +705,32 @@
         return;
       }
 
-      // Hide loading state
       document.getElementById('loadingState').style.display = 'none';
 
-      // Calculate discount percentage if old price exists
-      let discountHtml = '';
-      if (currentProduct.oldPrice) {
-        const oldPriceNum = parseInt(currentProduct.oldPrice.replace(/[^0-9]/g, ''));
-        const currentPriceNum = parseInt(currentProduct.currentPrice?.replace(/[^0-9]/g, '') || 
-                                         currentProduct.price?.replace(/[^0-9]/g, ''));
-        if (oldPriceNum && currentPriceNum) {
-          const discount = Math.round(((oldPriceNum - currentPriceNum) / oldPriceNum) * 100);
-          discountHtml = `<span class="discount">-${discount}%</span>`;
-        }
+      let rawPrice = currentProduct.price || currentProduct.currentPrice || '';
+      let rawOldPrice = currentProduct.oldPrice || '';
+
+      // Clean up: extract only the first price from rawPrice if it contains multiple
+      let currentPrice = extractCleanPrice(rawPrice);
+      let oldPrice = extractOldPrice(rawPrice, rawOldPrice);
+
+      // If currentPrice still has old price inside (like "₦120,000 ₦150,000") split again
+      const splitAgain = currentPrice.split(/\s+/);
+      if (splitAgain.length > 1) {
+        currentPrice = splitAgain[0];
+        if (!oldPrice) oldPrice = splitAgain[1];
       }
 
-      // Build specs HTML
+      // Ensure we don't duplicate old price
+      if (oldPrice === currentPrice) {
+        oldPrice = '';
+      }
+
+      let discountHtml = '';
+      if (oldPrice && oldPrice !== currentPrice && oldPrice !== '') {
+        discountHtml = `<span class="discount">Save up to 30%</span>`;
+      }
+
       const specsHtml = currentProduct.specs && currentProduct.specs.length > 0 
         ? currentProduct.specs.map(spec => `
           <div class="spec-item">
@@ -726,10 +742,6 @@
           </div>
         `).join('')
         : '<p>No specifications available</p>';
-
-      // Get price
-      const price = currentProduct.currentPrice || currentProduct.price || '₦0';
-      const oldPrice = currentProduct.oldPrice || '';
 
       const productHtml = `
         <div class="product-detail">
@@ -754,7 +766,7 @@
               </div>
               
               <div class="price-section">
-                <span class="current-price">${price}</span>
+                <span class="current-price">${currentPrice}</span>
                 ${oldPrice ? `<span class="old-price">${oldPrice}</span>` : ''}
                 ${discountHtml}
               </div>
@@ -792,21 +804,11 @@
     }
 
     function loadRelatedProducts() {
-      // Try to load related products from localStorage
       const stored = localStorage.getItem('allProducts');
       if (stored) {
         allProducts = JSON.parse(stored);
-      } else {
-        // Sample related products
-        allProducts = [
-          { id: 1, name: 'iPhone 15 Pro Max', brand: 'Apple', price: '₦1,450,000', img: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-pro-max.jpg', category: 'phones', ratingStars: '★★★★★', ratingCount: '1200' },
-          { id: 2, name: 'Samsung Galaxy S24 Ultra', brand: 'Samsung', price: '₦1,350,000', img: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-ultra-sm-s928.jpg', category: 'phones', ratingStars: '★★★★★', ratingCount: '980' },
-          { id: 3, name: 'Google Pixel 8 Pro', brand: 'Google', price: '₦890,000', img: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg', category: 'phones', ratingStars: '★★★★☆', ratingCount: '567' },
-          { id: 4, name: 'Xiaomi 20000mAh Power Bank', brand: 'Xiaomi', price: '₦35,000', img: 'https://i02.appmifile.com/894_operator_sg/1722/885f139e/PB200SMI-BK-800x800.jpg', category: 'powerbanks', ratingStars: '★★★★★', ratingCount: '342' }
-        ];
       }
 
-      // Filter related products (same category, exclude current)
       const related = allProducts.filter(p => 
         p.category === currentProduct.category && p.id != currentProduct.id
       ).slice(0, 4);
@@ -816,16 +818,28 @@
           <div class="related-section">
             <h2 class="related-title">🔄 You May Also Like</h2>
             <div class="related-grid">
-              ${related.map(product => `
+              ${related.map(product => {
+                // Also clean related product prices
+                let relPrice = product.price || '';
+                let relOldPrice = product.oldPrice || '';
+                const priceParts = relPrice.split(/\s+/);
+                if (priceParts.length > 1 && !relOldPrice) {
+                  relPrice = priceParts[0];
+                  relOldPrice = priceParts[1];
+                }
+                return `
                 <a href="product-details.html?id=${product.id}" class="related-card" onclick="sessionStorage.setItem('product_${product.id}', '${JSON.stringify(product).replace(/'/g, "\\'")}')">
                   <img src="${product.img}" alt="${product.name}" onerror="this.src='https://placehold.co/400x500?text=Product'">
                   <div class="related-info">
                     <div class="related-brand">${product.brand}</div>
                     <div class="related-name">${product.name}</div>
-                    <div class="related-price">${product.price}</div>
+                    <div class="related-price">
+                      ${relOldPrice ? `<span class="related-old-price">${relOldPrice}</span>` : ''}
+                      ${relPrice}
+                    </div>
                   </div>
                 </a>
-              `).join('')}
+              `}).join('')}
             </div>
           </div>
         `;
@@ -845,7 +859,6 @@
       `;
     }
 
-    // Search functionality
     function setupSearch() {
       const searchInput = document.getElementById('searchInput');
       const searchForm = document.getElementById('searchForm');
@@ -866,7 +879,6 @@
         }
       });
 
-      // Close search results when clicking outside
       document.addEventListener('click', (e) => {
         if (searchContainer && !searchContainer.contains(e.target)) {
           searchResults.classList.remove('show');
@@ -876,14 +888,8 @@
 
     function performSearch(term) {
       const stored = localStorage.getItem('allProducts');
-      let products = [];
+      let products = stored ? JSON.parse(stored) : [];
       
-      if (stored) {
-        products = JSON.parse(stored);
-      } else {
-        products = allProducts;
-      }
-
       const filtered = products.filter(p => 
         p.name.toLowerCase().includes(term.toLowerCase()) || 
         p.brand.toLowerCase().includes(term.toLowerCase())
@@ -892,16 +898,20 @@
       const searchResults = document.getElementById('searchResults');
       
       if (filtered.length > 0) {
-        searchResults.innerHTML = filtered.map(product => `
+        searchResults.innerHTML = filtered.map(product => {
+          let searchPrice = product.price || '';
+          const priceParts = searchPrice.split(/\s+/);
+          if (priceParts.length > 1) searchPrice = priceParts[0];
+          return `
           <a href="product-details.html?id=${product.id}" class="search-result-item" onclick="sessionStorage.setItem('product_${product.id}', '${JSON.stringify(product).replace(/'/g, "\\'")}')">
             <img src="${product.img}" alt="${product.name}" class="search-result-img" onerror="this.src='https://placehold.co/100x100?text=Product'">
             <div class="search-result-info">
               <div class="search-result-name">${product.name}</div>
               <div class="search-result-brand">${product.brand}</div>
-              <div class="search-result-price">${product.price}</div>
+              <div class="search-result-price">${searchPrice}</div>
             </div>
           </a>
-        `).join('');
+        `}).join('');
         searchResults.classList.add('show');
       } else {
         searchResults.innerHTML = '<div style="padding: 1rem; text-align: center; color: var(--gray-600);">No products found</div>';
@@ -909,7 +919,6 @@
       }
     }
 
-    // Store all products in localStorage when page loads
     function storeAllProducts() {
       if (!localStorage.getItem('allProducts')) {
         const sampleProducts = [
@@ -924,7 +933,6 @@
       }
     }
 
-    // Initialize
     storeAllProducts();
     loadProductData();
     setupSearch();
